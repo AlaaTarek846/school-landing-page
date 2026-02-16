@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ App::isLocale('ar') ? 'rtl' : 'ltr' }}">
 
     <head>
         <meta charset="utf-8" />
@@ -26,8 +26,11 @@
         <link rel="stylesheet" href="{{ asset('website/css/glightbox.min.css')}}" type="text/css" />
 
         <!-- Custom Css -->
-        <link href="{{ asset('website/css/style.min.css')}}" rel="stylesheet" type="text/css" />
-
+        @if (App::isLocale('ar'))
+            <link href="{{ asset('website/css/style-rtl.css')}}" rel="stylesheet" type="text/css" />
+        @else
+            <link href="{{ asset('website/css/style.css')}}" rel="stylesheet" type="text/css" />
+        @endif
     </head>
 
     <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="51">
