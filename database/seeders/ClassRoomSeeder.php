@@ -14,6 +14,7 @@ class ClassRoomSeeder extends Seeder
      */
     public function run(): void
     {
+
         ClassRoom::truncate();
         // KG
         $kg = EducationalStage::where('title_en', 'Kindergarten')->first();
