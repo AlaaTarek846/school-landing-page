@@ -10,8 +10,8 @@
                     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="mdi mdi-menu"></i>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <ul class="navbar-nav ms-auto navbar-center">
+                <div class="collapse navbar-collapse order-lg-2 justify-content-center" id="navbarCollapse">
+                    <ul class="navbar-nav navbar-center">
                         <li class="nav-item">
                             <a href="#home" class="nav-link">Home</a>
                         </li>
@@ -28,15 +28,17 @@
                             <a href="#portfolio" class="nav-link">Portfolio</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#pricing" class="nav-link">Pricing</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#blog" class="nav-link">Blog</a>
-                        </li>
-                        <li class="nav-item">
                             <a href="#contact" class="nav-link">Contact</a>
                         </li>
                     </ul>
+                </div>
+                <!--end navabar-collapse-->
+                <div class="header-btn ms-auto ms-lg-0 order-lg-3">
+                    @if (App::isLocale('ar'))
+                        <a href="{{ route('change.language', 'en') }}" class="btn btn-sm btn-language">English</a>
+                    @else
+                        <a href="{{ route('change.language', 'ar') }}" class="btn btn-sm btn-language">Arabic</a>
+                    @endif
                 </div>
                 <!--end navabar-collapse-->
             </div>
