@@ -18,4 +18,14 @@ class WhyChooseUs extends Model
         'description_en',
         'image',
     ];
+
+    public function getTitleAttribute($value)
+    {
+        return app()->getLocale() === 'ar' ? $this->title_ar : $this->title_en;
+    }
+
+    public function getDescriptionAttribute($value)
+    {
+        return app()->getLocale() === 'ar' ? $this->description_ar : $this->description_en;
+    }
 }

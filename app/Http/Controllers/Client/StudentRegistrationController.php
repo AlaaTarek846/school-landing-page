@@ -20,7 +20,7 @@ class StudentRegistrationController extends Controller
 
         StudentRegistration::create($data);
 
-        return responseJson([], 'Registration Submitted Successfully', 200);
+        return responseJson([], __('website.registration_successful'), 200);
     }
     
     // Optional: Methods to fetch stages/classes for dropdowns if needed via AJAX

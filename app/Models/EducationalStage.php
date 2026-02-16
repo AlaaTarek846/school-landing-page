@@ -9,6 +9,13 @@ class EducationalStage extends Model
 {
     use HasFactory;
 
+    protected $appends = ['name'];
+
+    public function getNameAttribute()
+    {
+        return app()->getLocale() == 'ar' ? $this->title_ar : $this->title_en;
+    }
+
     protected $fillable = [
         'title_ar',
         'title_en',
@@ -19,5 +26,15 @@ class EducationalStage extends Model
     public function classes()
     {
         return $this->hasMany(ClassRoom::class, 'educational_stage_id');
+    }
+
+    public function getTitleAttribute($value)
+    {
+        return app()->getLocale() === 'ar' ? $this->title_ar : $this->title_en;
+    }
+
+    public function getDescriptionAttribute($value)
+    {
+        return app()->getLocale() === 'ar' ? $this->description_ar : $this->description_en;
     }
 }

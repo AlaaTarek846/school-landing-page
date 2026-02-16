@@ -11,6 +11,13 @@ class ClassRoom extends Model
 
     protected $table = 'classes';
 
+    protected $appends = ['name'];
+
+    public function getNameAttribute()
+    {
+        return app()->getLocale() == 'ar' ? $this->title_ar : $this->title_en;
+    }
+
     protected $fillable = [
         'title_ar',
         'title_en',

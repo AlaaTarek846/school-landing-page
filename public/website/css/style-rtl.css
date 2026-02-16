@@ -1026,12 +1026,12 @@ html {
 }
 
 @media (min-width: 992px) {
-  .process-border:before {
+  div:not(:last-child) .process-border:after {
     content: "";
     border: 1px solid rgba(5, 189, 147, 0.4);
     position: absolute;
     width: 76%;
-    left: 62%;
+    right: 62%;
     top: 65px;
   }
 }

@@ -17,5 +17,14 @@ class Team extends Model
         return $this->morphOne(File::class, 'uploadable');
     }
 
+    public function getNameAttribute($value)
+    {
+        return app()->getLocale() === 'ar' ? $this->name_ar : $this->name_en;
+    }
+
+    public function getJobAttribute($value)
+    {
+        return app()->getLocale() === 'ar' ? $this->job_ar : $this->job_en;
+    }
 
 }

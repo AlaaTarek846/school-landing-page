@@ -40,11 +40,11 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
 
         if (!app()->runningInConsole()) {
-            $shareSetting = Setting::first();
+            $setting = Setting::first();
             $galleries = Gallery::whereStatus(1)->take(6)->get();
 
             View::share([
-                'shareSetting' => $shareSetting,
+                'setting' => $setting,
                 'galleries' => $galleries,
             ]);
         }
