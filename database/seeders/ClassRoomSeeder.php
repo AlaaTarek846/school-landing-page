@@ -15,7 +15,9 @@ class ClassRoomSeeder extends Seeder
     public function run(): void
     {
 
+        \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         ClassRoom::truncate();
+        \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         // KG
         $kg = EducationalStage::where('title_en', 'Kindergarten')->first();
         if ($kg) {

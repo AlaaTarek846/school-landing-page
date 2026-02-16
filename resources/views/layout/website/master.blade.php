@@ -57,13 +57,6 @@
 
     @stack('script')
 
-     
-
-
-
-
-
-    
 
     </body>
 

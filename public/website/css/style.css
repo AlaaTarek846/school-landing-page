@@ -1024,7 +1024,7 @@ html {
 }
 
 @media (min-width: 992px) {
-  .process-border:before {
+  div:not(:last-child) .process-border:before {
     content: "";
     border: 1px solid rgba(5, 189, 147, 0.4);
     position: absolute;
