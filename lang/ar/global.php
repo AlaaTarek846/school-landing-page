@@ -20,4 +20,6 @@ return [
     'update' => 'تحديث',
     'Close' => 'إغلاق',
     'save' => 'حفظ',
+    'Facilities' => 'إمكانيات المدرسة',
+    'FacilityDetails' => 'تفاصيل الإمكانيات',
 ];

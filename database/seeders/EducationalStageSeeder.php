@@ -12,7 +12,9 @@ class EducationalStageSeeder extends Seeder
      */
     public function run(): void
     {
-        EducationalStage::truncate();
+        \Illuminate\Support\Facades\Schema::disableForeignKeyConstraints();
+        EducationalStage::query()->delete();
+        \Illuminate\Support\Facades\Schema::enableForeignKeyConstraints();
 
         $stages = [
             [

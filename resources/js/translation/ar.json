@@ -142,9 +142,13 @@
         "JobMustHaveAtLeast": "التعليق يجب ان تحتوى على الاقل من 200"
     },
     "global": {
+        "Facilities": "المرافق",
+        "FacilityDetails": "تفاصيل المرافق",
         "CampusTourCategories": "فئات جولة المدرسة",
+        "AddOnlyOneItem": "أضف عنصرًا واحدًا فقط: فيديو، أو صورة، أو رابط",
         "TitleAr": "العنوان بالعربية",
         "TitleEn": "العنوان بالإنجليزية",
+        "SelectCategory": "اختر الفئة",
         "StudentRegistrations": "طلبات التسجيل",
         "Notes": "ملاحظات",
         "ClassRoom": "الصف الدراسي",

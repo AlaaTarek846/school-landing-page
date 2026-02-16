@@ -20,4 +20,6 @@ return [
     'update' => 'Update',
     'Close' => 'Close',
     'save' => 'Save',
+    'Facilities' => 'Facilities',
+    'FacilityDetails' => 'Facility Details',
 ];

@@ -11,28 +11,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                      <div class="col-md-6 mb-2" v-for="lang in languages">
-                        <label class="form-label">{{ $t('label.title') }} فرعي ({{ lang == 'ar' ? 'عربي' : 'English' }})</label>
-                        <input type="text" class="form-control form-control-lg"  v-model="v$[`title_color_${lang}`].$model"
-                               :class="{'is-invalid': v$[`title_color_${lang}`].$error || errors[`title_color_${lang}`],
-                                   'is-valid': !v$[`title_color_${lang}`].$invalid && !errors[`title_color_${lang}`]}">
-
-                        <div class="invalid-feedback">
-                          <span v-if="v$[`title_color_${lang}`].required.$invalid">{{ $t('validation.fieldRequired') }}<br /> </span>
-                          <span v-if="v$[`title_color_${lang}`].minLength.$invalid">{{ $t('validation.TitleIsMustHaveAtLeast') }} {{
-                              v$[`title_color_${lang}`].minLength.$params.min
-                            }} {{ $t('validation.Letters') }} <br />
-                                </span>
-                          <span v-if="v$[`title_color_${lang}`].maxLength.$invalid">{{ $t('validation.TitleIsMustHaveAtMost') }} {{
-                              v$[`title_color_${lang}`].maxLength.$params.max
-                            }} {{ $t('validation.Letters') }}
-                                </span></div>
-                        <template v-if="errors[`title_color_${lang}`]">
-                          <error-message v-for="(errorMessage, index) in errors[`title_color_${lang}`]" :key="index">
-                            {{ errorMessage }}
-                          </error-message>
-                        </template>
-                      </div>
+                      <!-- Subtitle Removed -->
 
                       <div class="col-md-6 mb-2" v-for="lang in languages">
                         <label class="form-label">{{ $t('label.title') }} ({{ lang == 'ar' ? 'عربي' : 'English' }})</label>
@@ -71,43 +50,7 @@
                           </error-message>
                         </template>
                       </div>
-                        <h4 class="my-2">التفاصيل</h4>
-                        <div class="row" v-for="(detail, index) in submitData.data.details" :key="index">
-                          <div class="col-xl-5 mt-1" v-for="lang in languages">
-                            <label class="form-label">{{ $t('label.title') }} ({{ lang == 'ar' ? 'عربي' : 'English' }})</label>
-                            <input type="text" class="form-control form-control-lg"  v-model="submitData.data.details[index][`title_${lang}`]"
-                                   :class="{ 'is-invalid': v$.details.$each.$response.$data[index][`title_${lang}`].$error || errors[`details[${index}][title_${lang}]`],
-                                    'is-valid': !v$.details.$each.$response.$data[index][`title_${lang}`].$invalid && !errors[`details[${index}][title_${lang}]`] }">
-                            <div class="invalid-feedback">
-                                <span v-if="v$.details.$each.$response.$data[index][`title_${lang}`].required.$invalid">{{
-                                    $t('global.ThisFieldIsRequired') }}<br />
-                                </span>
-                            </div>
-                            <template v-if="errors[`details[${index}][title_${lang}]`]">
-                              <error-message v-for="(errorMessage, index) in errors[`details[${index}][title_${lang}]`]" :key="index">
-                                {{ errorMessage }}
-                              </error-message>
-                            </template>
-                          </div>
-                          <div class="col-md-2 mt-1" style="line-height: 85px;">
-                            <button
-                                type="button" class="btn btn-danger btn-sm mx-1"
-                                @click="removeSize(index)"
-                                :title="$t('global.Delete')"
-                                v-if="submitData.data.details.length > 1"
-                            >
-                              <i class="ri-delete-bin-line"></i>
-                            </button>
-                            <button
-                                type="button" class="btn btn-success btn-sm"
-                                :title="$t('global.addLine')"
-                                v-if="(submitData.data.details.length - 1) == index"
-                                @click="addSizeDetail"
-                            >
-                              <i class="ri-add-line"></i>
-                            </button>
-                          </div>
-                        </div>
+                        <!-- Details Removed -->
                         <div class="col-md-12 mt-3">
                           <label class="form-label">صورة  (498 * 460)</label>
                           <div class="row img-div-position">
@@ -303,14 +246,12 @@
   const rules = computed(() => {
     return {
       title_ar: {minLength: minLength(1),maxLength:maxLength(100),required,},
-      title_color_ar: {minLength: minLength(1),maxLength:maxLength(100),required,},
+      title_color_ar: {minLength: minLength(0),maxLength:maxLength(100)}, // Removed required
       title_en: {minLength: minLength(1),maxLength:maxLength(100),required,},
-      title_color_en: {minLength: minLength(1),maxLength:maxLength(100),required,},
+      title_color_en: {minLength: minLength(0),maxLength:maxLength(100)}, // Removed required
       description_ar: {minLength: minLength(1),maxLength:maxLength(200),required,},
       description_en: {minLength: minLength(1),maxLength:maxLength(200),required,},
-      details: {
-        ...langValidation2.value,
-      },
+      details: {}, // Removed validations
       first_photo: {required: requiredIf( (value) => {
           return props.type == 'create' || !imageUpload.value;
         })

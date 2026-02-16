@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCampusTourRequest extends FormRequest
+class StoreFacilityDetailRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -17,17 +17,15 @@ class StoreCampusTourRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
         return [
             'title_ar' => 'required|string|max:255',
             'title_en' => 'required|string|max:255',
-            'image' => 'nullable|required_without_all:video,link|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'video' => 'nullable|required_without_all:image,link',
-            'link' => 'nullable|required_without_all:image,video|url',
-            'campus_tour_category_id' => 'required|exists:campus_tour_categories,id',
+            'count' => 'required|integer|min:1',
+            'facility_id' => 'required|exists:facilities,id',
         ];
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Database\Seeders\About\OneAboutSeeder;
+use Database\Seeders\OneAboutSeeder;
 use Database\Seeders\About\TwoAboutSeeder;
 use Database\Seeders\Home\CounterSectionSeeder;
 use Database\Seeders\Home\FaqSectionSeeder;
@@ -48,6 +48,8 @@ class DatabaseSeeder extends Seeder
             WhyChooseUsSeeder::class,
             CampusTourSeeder::class,
             StudentRegistrationSeeder::class,
+            FacilitySeeder::class,
+            FacilityDetailSeeder::class,
         ]);
     }
 }

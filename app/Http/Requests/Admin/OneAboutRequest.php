@@ -24,13 +24,13 @@ class OneAboutRequest extends FormRequest
         return [
             "title_ar" => "required|string|max:200",
             "title_en" => "required|string|max:200",
-            "title_color_en" => "required|string|max:200",
-            "title_color_ar" => "required|string|max:200",
+            "title_color_en" => "nullable|string|max:200",
+            "title_color_ar" => "nullable|string|max:200",
             "description_ar" => "required|string|max:300",
             "description_en" => "required|string|max:200",
-            "details"        => "required",
-            "details.*.title_ar" => "required|string|max:200",
-            "details.*.title_en" => "required|string|max:200",
+            "details"        => "nullable",
+            "details.*.title_ar" => "nullable|string|max:200",
+            "details.*.title_en" => "nullable|string|max:200",
             'first_photo' => [$this->method() == "PUT" ? 'nullable':'required','image','mimes:jpeg,png,jpg,gif','max:2048'],
         ];
     }

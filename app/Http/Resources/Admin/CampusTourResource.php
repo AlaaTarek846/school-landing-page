@@ -34,6 +34,7 @@ class CampusTourResource extends JsonResource
             'image' => $this->image ? \Illuminate\Support\Facades\Storage::url($this->image) : null,
             'video' => $this->video ? \Illuminate\Support\Facades\Storage::url($this->video) : null,
             'link' => $this->link,
+            'campus_tour_category_id' => $this->campus_tour_category_id,
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
         ];
     }

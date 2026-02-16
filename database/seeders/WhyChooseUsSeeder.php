@@ -12,7 +12,9 @@ class WhyChooseUsSeeder extends Seeder
      */
     public function run(): void
     {
-        WhyChooseUs::truncate();
+        \Illuminate\Support\Facades\Schema::disableForeignKeyConstraints();
+        WhyChooseUs::query()->delete();
+        \Illuminate\Support\Facades\Schema::enableForeignKeyConstraints();
         
         $items = [
             [
