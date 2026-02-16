@@ -7,9 +7,9 @@
           <div class="card custom-card">
             <div class="card-header justify-content-between">
               <div class="prism-toggle">
-                <button @click="showModelCreate" class="btn btn-sm btn-primary-light" data-bs-toggle="modal" data-bs-target="#area-model">
-                  <i class="ri-add-line me-1 fw-semibold align-middle"></i>{{ $t('global.add') }}
-                </button>
+<!--                <button @click="showModelCreate" class="btn btn-sm btn-primary-light" data-bs-toggle="modal" data-bs-target="#area-model">-->
+<!--                  <i class="ri-add-line me-1 fw-semibold align-middle"></i>{{ $t('global.add') }}-->
+<!--                </button>-->
               </div>
             </div>
             <div class="card-body">
@@ -19,7 +19,8 @@
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">{{ $t('global.image') }}</th>
-                    <th scope="col">{{ $t('global.name') }}</th>
+                    <th scope="col">الاسم </th>
+                    <th scope="col">الوظيفة </th>
                     <th scope="col">{{ $t('global.action') }}</th>
                   </tr>
                   </thead>
@@ -33,7 +34,8 @@
                         </span>
                       </div>
                     </td>
-                    <td>{{item.name}}</td>
+                    <td>{{item.name_ar}}</td>
+                    <td>{{item.job_ar}}</td>
                     <td>
                       <div class="hstack gap-2 fs-15">
                         <button
@@ -41,9 +43,9 @@
                                 data-bs-toggle="modal" data-bs-target="#area-model"
                                 class="btn btn-icon btn-sm btn-info-transparent rounded-pill"><i
                             class="ri-edit-line"></i></button>
-                        <a href="#" @click.prevent="deleteData(item.id,index)"
-                           class="btn btn-icon btn-sm btn-danger-transparent rounded-pill"><i
-                            class="ri-delete-bin-line"></i></a>
+<!--                        <a href="#" @click.prevent="deleteData(item.id,index)"-->
+<!--                           class="btn btn-icon btn-sm btn-danger-transparent rounded-pill"><i-->
+<!--                            class="ri-delete-bin-line"></i></a>-->
                       </div>
                     </td>
                   </tr>

@@ -1,5 +1,5 @@
 <template>
-    <div class="modal fade" id="why-choose-us-model" tabindex="-1"
+    <div class="modal fade" id="campus-tour-categories-model" tabindex="-1"
          aria-labelledby="exampleModalLgLabel" aria-hidden="true" >
         <div class="modal-dialog  modal-lg modal-dialog-scrollable">
             <div class="modal-content">
@@ -14,7 +14,7 @@
                       
                       <!-- Title AR -->
                       <div class="col-md-6 mb-2">
-                        <label class="form-label">العنوان (عربي)</label>
+                        <label class="form-label">{{ $t('global.TitleAr') }}</label>
                         <input type="text" class="form-control form-control-lg"  v-model="v$.title_ar.$model"
                                :class="{'is-invalid': v$.title_ar.$error || errors[`title_ar`],
                                      'is-valid': !v$[`title_ar`].$invalid && !errors[`title_ar`]}">
@@ -25,7 +25,7 @@
 
                       <!-- Title EN -->
                       <div class="col-md-6 mb-2">
-                        <label class="form-label">العنوان (English)</label>
+                        <label class="form-label">{{ $t('global.TitleEn') }}</label>
                         <input type="text" class="form-control form-control-lg"  v-model="v$.title_en.$model"
                                :class="{'is-invalid': v$.title_en.$error || errors[`title_en`],
                                      'is-valid': !v$[`title_en`].$invalid && !errors[`title_en`]}">
@@ -34,63 +34,6 @@
                         </div>
                       </div>
 
-                       <!-- Description AR -->
-                      <div class="col-md-12 mb-2">
-                        <label class="form-label">المحتوي (عربي)</label>
-                        <textarea type="text" class="form-control form-control-lg"  v-model="v$.description_ar.$model"
-                                  :class="{'is-invalid': v$.description_ar.$error || errors[`description_ar`],
-                                     'is-valid': !v$[`description_ar`].$invalid && !errors[`description_ar`]}"> </textarea>
-                         <div class="invalid-feedback" v-if="v$.description_ar.$error">
-                             {{ $t('validation.fieldRequired') }}
-                        </div>
-                      </div>
-
-                       <!-- Description EN -->
-                      <div class="col-md-12 mb-2">
-                        <label class="form-label">المحتوي (English)</label>
-                        <textarea type="text" class="form-control form-control-lg"  v-model="v$.description_en.$model"
-                                  :class="{'is-invalid': v$.description_en.$error || errors[`description_en`],
-                                     'is-valid': !v$[`description_en`].$invalid && !errors[`description_en`]}"> </textarea>
-                         <div class="invalid-feedback" v-if="v$.description_en.$error">
-                             {{ $t('validation.fieldRequired') }}
-                        </div>
-                      </div>
-
-                        <div class="col-md-12 mt-3">
-                          <label class="form-label">{{ $t('global.image') }} (55 * 55)</label>
-                          <div class="row img-div-position">
-                            <div class="col-12 text-end">
-                              <button
-                                  type="button" class="btn btn-danger btn-sm"
-                                  @click="imageUpload = ''"
-                                  v-if="imageUpload"
-                              >
-                                {{ $t('global.deleteImage') }}
-                              </button>
-                            </div>
-                            <div class="col-md-12 mt-3 d-flex flex-wrap flex-fill h-100">
-                              <div class="btn btn-outline-light waves-effect" style="width: 100%; height:90%">
-
-                                    <span v-if="!imageUpload" style="margin-top:35%;">
-                                        <br><i class="bi bi-cloud-upload fs-40" style="font-size: 85px;"></i>
-                                    </span>
-
-                                <input name="mediaPackageUpload" type="file" @change="preview"
-                                       id="photoPersonal1" accept="image/*">
-
-
-
-                                <div v-if="imageUpload" class="row justify-content-center h-100">
-                                   <figure class="col-3">
-                                    <img :src="imageUpload.url ? imageUpload.url : imageUpload" class="img-fluid rounded h-100 w-100 m-1" />
-                                  </figure>
-                                </div>
-                              </div>
-
-                            </div>
-                          </div>
-                        </div>
-                        
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -116,7 +59,6 @@
   import {maxLength, minLength, required, numeric, requiredIf, url} from "@vuelidate/validators";
   import useVuelidate from "@vuelidate/core";
   import adminApi from "../../../api/adminAxios";
-  import {useStore} from "vuex";
 
   const props = defineProps({
       type: {default: 'create'},
@@ -126,7 +68,7 @@
   const emit = defineEmits(['created','getStatus']);
 
   setTimeout(async () => {
-    let myModalEl = document.getElementById('why-choose-us-model')
+    let myModalEl = document.getElementById('campus-tour-categories-model')
     myModalEl.addEventListener('show.bs.modal', function (event) {
       resetModal();
     })
@@ -138,22 +80,15 @@
   let loading = ref(false);
   let is_disabled = ref(false);
   const { t } = useI18n({});
-  const store = useStore();
   const id = ref(null);
-  const imageUpload = ref('');
 
   function defaultData(){
     submitData.data.title_ar = '';
     submitData.data.title_en = '';
-    submitData.data.description_ar = '';
-    submitData.data.description_en = '';
-    submitData.data.image = '';
     
     is_disabled.value = false;
     loading.value = false;
     errors.value = [];
-    imageUpload.value = '';
-
   }
 
   function resetModal() {
@@ -164,16 +99,11 @@
         id.value = props.dataRow.id;
         
         loading.value = true;
-        // Using direct data from props if available to avoid extra call, or fetch if needed
-        // Assuming adminApi.get call is safer for latest data
-         adminApi.get(`why-choose-us/${id.value}`)
+         adminApi.get(`campus-tour-categories/${id.value}`)
             .then((res) => {
               let l = res.data.data;
               submitData.data.title_ar = l.title_ar;
               submitData.data.title_en = l.title_en;
-              submitData.data.description_ar = l.description_ar;
-              submitData.data.description_en = l.description_en;
-              imageUpload.value = l.image; // URL
             })
             .catch((err) => {
               console.log(err);
@@ -194,9 +124,6 @@
     data:{
       title_ar: '',
       title_en: '',
-      description_ar: '',
-      description_en: '',
-      image: '',
     }
   });
 
@@ -204,8 +131,6 @@
     return {
       title_ar: {required},
       title_en: {required},
-      description_ar: {required},
-      description_en: {required},
     }
   });
 
@@ -218,18 +143,12 @@
       let formData = new FormData();
       formData.append('title_ar', submitData.data.title_ar);
       formData.append('title_en', submitData.data.title_en);
-      formData.append('description_ar', submitData.data.description_ar);
-      formData.append('description_en', submitData.data.description_en);
-      
-      if(submitData.data.image && typeof submitData.data.image !== 'string') {
-          formData.append('image', submitData.data.image);
-      }
 
       if (props.type !== 'edit') {
         if (!v$.value.$error) {
           is_disabled.value = false;
           loading.value = true;
-          adminApi.post(`why-choose-us`, formData)
+          adminApi.post(`campus-tour-categories`, formData)
               .then((res) => {
                 Swal.fire({
                   icon: 'success',
@@ -251,7 +170,7 @@
         is_disabled.value = false;
         loading.value = true;
         formData.append('_method','PUT');
-        adminApi.post(`why-choose-us/${id.value}`,formData)
+        adminApi.post(`campus-tour-categories/${id.value}`,formData)
             .then((res) => {
               Swal.fire({
                 icon: 'success',
@@ -270,48 +189,4 @@
       }
 }
 
-  const preview = (e) => {
-    if(e && e.target.files[0]) {
-      submitData.data.image = e.target.files[0];
-      let reader = new FileReader();
-      reader.onload = () => {
-          imageUpload.value = reader.result;
-      }
-      reader.readAsDataURL(submitData.data.image);
-    }
-  };
 </script>
-
-<style scoped>
-.waves-effect {
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  width: 200px;
-  height: 50px;
-  text-align: center;
-  line-height: 34px;
-  margin: auto;
-}
-
-input[type="file"] {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  margin: 0;
-  cursor: pointer;
-  filter: alpha(opacity=0);
-  opacity: 0;
-}
-
-.waves-effect {
-  background-color: #e9e9e9;
-}
-</style>

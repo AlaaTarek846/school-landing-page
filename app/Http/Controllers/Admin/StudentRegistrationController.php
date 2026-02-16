@@ -18,7 +18,33 @@ class StudentRegistrationController extends Controller
 
     public function index(Request $request)
     {
-        $items = StudentRegistration::with(['educationalStage', 'classRoom'])->latest()->paginate(10);
+        $query = StudentRegistration::query()->with(['educationalStage', 'classRoom']);
+
+        if ($request->filled('search')) {
+            $search = json_decode($request->search, true);
+
+            if (!empty($search['educational_stage_id'])) {
+                $query->where('educational_stage_id', $search['educational_stage_id']);
+            }
+
+            if (!empty($search['class_id'])) {
+                $query->where('class_id', $search['class_id']);
+            }
+
+            if (!empty($search['date'])) {
+                $query->whereDate('created_at', $search['date']);
+            }
+
+            if (!empty($search['search_key'])) {
+                $query->where(function ($q) use ($search) {
+                    $q->where('student_name', 'like', '%' . $search['search_key'] . '%')
+                      ->orWhere('email', 'like', '%' . $search['search_key'] . '%')
+                      ->orWhere('phone', 'like', '%' . $search['search_key'] . '%');
+                });
+            }
+        }
+
+        $items = $query->latest()->paginate(10);
         return responseJson(StudentRegistrationResource::collection($items->items()), '', 200, getPaginates($items));
     }
 

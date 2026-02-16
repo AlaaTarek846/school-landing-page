@@ -3,46 +3,45 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreEducationalStageRequest;
-use App\Http\Requests\UpdateEducationalStageRequest;
-use App\Http\Resources\Admin\EducationalStageResource;
-use App\Models\EducationalStage;
+use App\Http\Requests\StoreCampusTourCategoryRequest;
+use App\Http\Requests\UpdateCampusTourCategoryRequest;
+use App\Http\Resources\Admin\CampusTourCategoryResource;
+use App\Models\CampusTourCategory;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
-class EducationalStageController extends Controller
+class CampusTourCategoryController extends Controller
 {
     public function indexPage(Request $request): View
     {
-        return view('admin.educational_stages.index');
+        return view('admin.campus_tour_categories.index');
     }
 
     public function index(Request $request)
     {
-        $items = EducationalStage::latest()->paginate(10);
-        return responseJson(EducationalStageResource::collection($items->items()), '', 200, getPaginates($items));
+        $items = CampusTourCategory::latest()->paginate(10);
+        return responseJson(CampusTourCategoryResource::collection($items->items()), '', 200, getPaginates($items));
     }
 
-    public function store(StoreEducationalStageRequest $request)
+    public function store(StoreCampusTourCategoryRequest $request)
     {
         $data = $request->validated();
-        EducationalStage::create($data);
+        CampusTourCategory::create($data);
         return responseJson([], 'Created Successfully', 200);
     }
 
     public function show($id)
     {
-        $item = EducationalStage::find($id);
+        $item = CampusTourCategory::find($id);
         if (!$item) {
             return responseJson(null, 'Not Found', 404);
         }
-        return responseJson(new EducationalStageResource($item), 'Data retrieved successfully', 200);
+        return responseJson(new CampusTourCategoryResource($item), 'Data retrieved successfully', 200);
     }
 
-    public function update(UpdateEducationalStageRequest $request, $id)
+    public function update(UpdateCampusTourCategoryRequest $request, $id)
     {
-        $item = EducationalStage::find($id);
+        $item = CampusTourCategory::find($id);
         if (!$item) {
             return responseJson(null, 'Not Found', 404);
         }
@@ -54,7 +53,7 @@ class EducationalStageController extends Controller
 
     public function destroy($id)
     {
-        $item = EducationalStage::find($id);
+        $item = CampusTourCategory::find($id);
         if (!$item) {
             return responseJson(null, 'Not Found', 404);
         }

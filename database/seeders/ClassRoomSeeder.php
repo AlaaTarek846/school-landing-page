@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\CampusTour;
 use App\Models\ClassRoom;
 use App\Models\EducationalStage;
 use Illuminate\Database\Seeder;
@@ -13,6 +14,7 @@ class ClassRoomSeeder extends Seeder
      */
     public function run(): void
     {
+        ClassRoom::truncate();
         // KG
         $kg = EducationalStage::where('title_en', 'Kindergarten')->first();
         if ($kg) {

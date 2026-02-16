@@ -10,7 +10,7 @@ class Team extends Model
 {
     use HasFactory, TranslationsTrait;
 
-    protected $guarded = [];
+    protected $fillable = ['name_ar', 'name_en', 'job_ar', 'job_en', 'status'];
 
     public function media()
     {

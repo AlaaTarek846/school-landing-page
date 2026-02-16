@@ -46,6 +46,7 @@ use App\Http\Controllers\Admin\EducationalStageController;
 use App\Http\Controllers\Admin\ClassRoomController;
 use App\Http\Controllers\Admin\CampusTourController;
 use App\Http\Controllers\Admin\StudentRegistrationController;
+use App\Http\Controllers\Admin\CampusTourCategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LanguageController;
 
@@ -108,6 +109,7 @@ Route::prefix('api')->group(function () {
         Route::apiResource('educational-stages', EducationalStageController::class);
         Route::apiResource('class-rooms', ClassRoomController::class);
         Route::apiResource('campus-tours', CampusTourController::class);
+        Route::apiResource('campus-tour-categories', CampusTourCategoryController::class);
         Route::apiResource('student-registrations', StudentRegistrationController::class)->only(['index', 'show']);
 
     });
@@ -157,6 +159,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('educational-stages', [EducationalStageController::class, 'indexPage'])->name('educational-stages');
             Route::get('class-rooms', [ClassRoomController::class, 'indexPage'])->name('class-rooms');
             Route::get('campus-tours', [CampusTourController::class, 'indexPage'])->name('campus-tours');
+            Route::get('campus-tour-categories', [CampusTourCategoryController::class, 'indexPage'])->name('campus-tour-categories');
             Route::get('student-registrations', [StudentRegistrationController::class, 'indexPage'])->name('student-registrations');
         });
 

@@ -1,0 +1,23 @@
+<?php
+
+return [
+    'CampusTourCategories' => 'فئات جولة المدرسة',
+    'CampusTours' => 'جولات المدرسة',
+    'Add' => 'إضافة',
+    'Edit' => 'تعديل',
+    'Delete' => 'حذف',
+    'Actions' => 'الإجراءات',
+    'TitleAr' => 'العنوان بالعربية',
+    'TitleEn' => 'العنوان بالإنجليزية',
+    'CreatedSuccessfully' => 'تم الإنشاء بنجاح',
+    'UpdatedSuccessfully' => 'تم التحديث بنجاح',
+    'DeletedSuccessfully' => 'تم الحذف بنجاح',
+    'home' => 'الرئيسية',
+    'NoDataFound' => 'لا توجد بيانات',
+    'Previous' => 'السابق',
+    'Next' => 'التالي',
+    'add' => 'إضافة',
+    'update' => 'تحديث',
+    'Close' => 'إغلاق',
+    'save' => 'حفظ',
+];

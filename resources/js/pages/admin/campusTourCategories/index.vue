@@ -6,18 +6,11 @@
           <loader v-if="loading" />
           <div class="card custom-card">
             <div class="card-header justify-content-between">
-              <div class="col-md-2">
-                <Select v-model="filterColumns.columns[0].value" :filterFields="['id','name']" :options="statuses" filter
-                        optionLabel="name" optionValue="id"
-                        :placeholder="$t('global.status')"
-                        class="w-full w-100"
-                ></Select>
+              <div class="prism-toggle">
+                <button @click="showModelCreate" class="btn btn-sm btn-primary-light" data-bs-toggle="modal" data-bs-target="#campus-tour-categories-model">
+                  <i class="ri-add-line me-1 fw-semibold align-middle"></i>{{ $t('global.add') }}
+                </button>
               </div>
-<!--              <div class="prism-toggle">-->
-<!--                <button @click="showModelCreate" class="btn btn-sm btn-primary-light" data-bs-toggle="modal" data-bs-target="#area-model">-->
-<!--                  <i class="ri-add-line me-1 fw-semibold align-middle"></i>{{ $t('global.add') }}-->
-<!--                </button>-->
-<!--              </div>-->
             </div>
             <div class="card-body">
               <div class="table-responsive mb-2">
@@ -25,33 +18,26 @@
                   <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">{{ $t('global.image') }}</th>
-                    <th scope="col">الاسم </th>
+                    <th scope="col">{{ $t('global.TitleAr') }}</th>
+                    <th scope="col">{{ $t('global.TitleEn') }}</th>
                     <th scope="col">{{ $t('global.action') }}</th>
                   </tr>
                   </thead>
                   <tbody v-if="data && data.length">
                   <tr v-for="(item,index) in data" :key="item.id">
                     <td scope="row">{{index + 1}}</td>
-                    <td>
-                      <div class="me-3" v-if="item.media">
-                        <span class="avatar avatar-xxl bg-light">
-                            <img :src="item.media.url" alt="" style="width: 100%; height: 100%">
-                        </span>
-                      </div>
-                    </td>
-                    <td>{{item.name_ar}}</td>
-
+                    <td>{{item.title_ar}}</td>
+                    <td>{{item.title_en}}</td>
                     <td>
                       <div class="hstack gap-2 fs-15">
                         <button
                                 @click.prevent="showEditMode(item)"
-                                data-bs-toggle="modal" data-bs-target="#area-model"
+                                data-bs-toggle="modal" data-bs-target="#campus-tour-categories-model"
                                 class="btn btn-icon btn-sm btn-info-transparent rounded-pill"><i
                             class="ri-edit-line"></i></button>
-<!--                        <a href="#" @click.prevent="deleteData(item.id,index)"-->
-<!--                           class="btn btn-icon btn-sm btn-danger-transparent rounded-pill"><i-->
-<!--                            class="ri-delete-bin-line"></i></a>-->
+                        <a href="#" @click.prevent="deleteData(item.id,index)"
+                           class="btn btn-icon btn-sm btn-danger-transparent rounded-pill"><i
+                            class="ri-delete-bin-line"></i></a>
                       </div>
                     </td>
                   </tr>
@@ -88,7 +74,7 @@ import {onMounted, ref} from "vue";
 import {useI18n} from "vue-i18n";
 
 export default {
-  name: "districts",
+  name: "campus-tour-categories",
   components:{
     ModalCreateAndUpdate
   },
@@ -96,42 +82,20 @@ export default {
 
     const {getData,loading,data,filterColumns,dataPaginate,step,uri,showModelCreate,showEditMode,deleteData,search,type,dataRow,modalShow,pagePaginate} = crud();
     const { t } = useI18n({});
-    const statuses = ref([
-      { id: 0, name: t('global.Inactive') },
-      { id: 1, name: t('global.active')  },
-    ]);
     search.value = {
       searchKey : '',
-      searchInTranslations: true,
+      searchInTranslations: false,
       columns: ['id'],
-      searchInRelations: [
-
-      ]
+      searchInRelations: []
     }
     onMounted(() => {
-        uri.value = 'testimonials';
+        uri.value = 'campus-tour-categories';
         getData();
         step.value = 1;
     });
 
-    filterColumns.value = {
-      columns: [
-        {
-          searchType: 'where',
-          opreator: '=',
-          column: 'status',
-          value: '',
-        },
-      ],
-    }
-
-
-    return {getData,statuses,filterColumns,loading,search,deleteData,showEditMode,showModelCreate,data,dataPaginate,type,dataRow,modalShow,pagePaginate};
+    return {getData,filterColumns,loading,search,deleteData,showEditMode,showModelCreate,data,dataPaginate,type,dataRow,modalShow,pagePaginate};
 
   }
 }
 </script>
-
-<style scoped>
-
-</style>

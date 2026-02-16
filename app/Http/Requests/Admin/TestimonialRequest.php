@@ -22,9 +22,12 @@ class TestimonialRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => "required|string|max:200",
-            "description" => "required|string|max:300",
-            "job" => "nullable|string|max:200",
+            "name_ar" => "required|string|max:200",
+            "name_en" => "required|string|max:200",
+            "description_ar" => "required|string|max:300",
+            "description_en" => "required|string|max:300",
+            "job_ar" => "nullable|string|max:200",
+            "job_en" => "nullable|string|max:200",
             "status" =>  "required|boolean",
             'image' => [$this->method() == "PUT" ? 'nullable':'required','image','mimes:jpeg,png,jpg,gif','max:2048'],
         ];
