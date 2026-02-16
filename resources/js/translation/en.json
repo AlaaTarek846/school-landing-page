@@ -129,9 +129,13 @@
         "overviewEnIsMustHaveAtLeast": "Overview in English must have at least"
     },
     "global": {
+        "Facilities": "Facilities",
+        "FacilityDetails": "Facility Details",
         "CampusTourCategories": "Campus Tour Categories",
+        "AddOnlyOneItem": "Add only one item: Video, Image, or Link",
         "TitleAr": "Title (Arabic)",
         "TitleEn": "Title (English)",
+        "SelectCategory": "Select Category",
         "StudentRegistrations": "Student Registrations",
         "Notes": "Notes",
         "ClassRoom": "Class Room",

@@ -112,6 +112,10 @@ Route::prefix('api')->group(function () {
         Route::apiResource('campus-tour-categories', CampusTourCategoryController::class);
         Route::apiResource('student-registrations', StudentRegistrationController::class)->only(['index', 'show']);
 
+        Route::apiResource('facilities', \App\Http\Controllers\Admin\FacilityController::class);
+        Route::get('facilities-dropdown', [\App\Http\Controllers\Admin\FacilityDetailController::class, 'getFacilities']);
+        Route::apiResource('facility-details', \App\Http\Controllers\Admin\FacilityDetailController::class);
+
     });
 
 });
@@ -161,6 +165,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('campus-tours', [CampusTourController::class, 'indexPage'])->name('campus-tours');
             Route::get('campus-tour-categories', [CampusTourCategoryController::class, 'indexPage'])->name('campus-tour-categories');
             Route::get('student-registrations', [StudentRegistrationController::class, 'indexPage'])->name('student-registrations');
+            Route::get('facilities', [\App\Http\Controllers\Admin\FacilityController::class, 'indexPage'])->name('facilities');
+            Route::get('facility-details', [\App\Http\Controllers\Admin\FacilityDetailController::class, 'indexPage'])->name('facility-details');
         });
 
         // logout

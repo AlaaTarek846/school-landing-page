@@ -79,6 +79,22 @@
             <span class="side-menu__label">طلبات التسجيل</span>
         </a>
     </li>
+
+    <li class="slide">
+        <a href="{{ route('admin.page.facilities') }}"
+           class="side-menu__item {{ request()->routeIs('admin.page.facilities') ? 'active' : '' }}">
+            <i class="bi bi-building side-menu__icon"></i>
+            <span class="side-menu__label">{{ __('global.Facilities') }}</span>
+        </a>
+    </li>
+
+    <li class="slide">
+        <a href="{{ route('admin.page.facility-details') }}"
+           class="side-menu__item {{ request()->routeIs('admin.page.facility-details') ? 'active' : '' }}">
+            <i class="bi bi-info-circle side-menu__icon"></i>
+            <span class="side-menu__label">{{ __('global.FacilityDetails') }}</span>
+        </a>
+    </li>
     <!-- End::School Modules -->
 
     <li class="slide">

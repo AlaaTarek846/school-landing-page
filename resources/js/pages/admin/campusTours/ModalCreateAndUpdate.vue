@@ -11,6 +11,22 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
+
+                      <!-- Category -->
+                      <div class="col-md-12 mb-2">
+                        <label class="form-label">{{ $t('global.CampusTourCategories') }}</label>
+                        <select class="form-select" v-model="v$.campus_tour_category_id.$model"
+                                :class="{'is-invalid': v$.campus_tour_category_id.$error || errors[`campus_tour_category_id`],
+                                      'is-valid': !v$[`campus_tour_category_id`].$invalid && !errors[`campus_tour_category_id`]}">
+                            <option value="" disabled selected>{{ $t('global.SelectCategory') }}</option>
+                            <option v-for="category in categories" :key="category.id" :value="category.id">
+                                {{ category.title_en }} - {{ category.title_ar }}
+                            </option>
+                        </select>
+                         <div class="invalid-feedback" v-if="v$.campus_tour_category_id.$error">
+                             {{ $t('validation.fieldRequired') }}
+                        </div>
+                      </div>
                       
                       <!-- Title AR -->
                       <div class="col-md-6 mb-2">
@@ -35,13 +51,23 @@
                       </div>
 
                        <!-- Content Upload -->
+                       <!-- Content Upload -->
+                        <div class="col-md-12 mb-3">
+                           <div class="alert alert-info py-2">
+                               <small>
+                                   <i class="bi bi-info-circle me-1"></i>
+                                   {{ $t('global.AddOnlyOneItem') || 'Add only one item: Video, Image, or Link' }}
+                               </small>
+                           </div>
+                        </div>
+
                         <div class="col-md-12 mt-3">
-                          <label class="form-label">الصورة</label>
+                          <label class="form-label">الصورة (اختياري) (800*640)</label>
                           <div class="row img-div-position">
                             <div class="col-12 text-end">
                               <button
                                   type="button" class="btn btn-danger btn-sm"
-                                  @click="imageUpload = ''"
+                                  @click="imageUpload = ''; submitData.data.image = '';"
                                   v-if="imageUpload"
                               >
                                 {{ $t('global.deleteImage') }}
@@ -55,9 +81,8 @@
                                     </span>
 
                                 <input name="mediaPackageUpload" type="file" @change="preview"
-                                       id="photoPersonal1" accept="image/*">
-
-
+                                       id="photoPersonal1" accept="image/*"
+                                       :disabled="!!videoPreview || !!submitData.data.link">
 
                                 <div v-if="imageUpload" class="row justify-content-center h-100">
                                    <figure class="col-3">
@@ -72,7 +97,8 @@
                          <!-- Video Upload -->
                         <div class="col-md-12 mt-3">
                           <label class="form-label">فيديو (اختياري)</label>
-                          <input type="file" class="form-control" @change="handleVideoUpload" accept="video/mp4,video/x-m4v,video/*">
+                          <input type="file" class="form-control" @change="handleVideoUpload" accept="video/mp4,video/x-m4v,video/*"
+                                 :disabled="!!imageUpload || !!submitData.data.link">
                            <div v-if="videoPreview" class="mt-2">
                                 <video width="320" height="240" controls :src="videoPreview"></video>
                                 <button type="button" class="btn btn-danger btn-sm d-block mt-1" @click="clearVideo">Remove Video</button>
@@ -83,7 +109,8 @@
                         <div class="col-md-12 mb-2 mt-2">
                             <label class="form-label">الرابط (اختياري)</label>
                             <input type="text" class="form-control form-control-lg"  v-model="v$.link.$model"
-                                   :class="{'is-invalid': v$.link.$error}">
+                                   :class="{'is-invalid': v$.link.$error}"
+                                   :disabled="!!imageUpload || !!videoPreview">
                              <div class="invalid-feedback" v-if="v$.link.$error">
                                  {{ $t('validation.fieldRequired') }}
                             </div>
@@ -139,12 +166,33 @@
   const imageUpload = ref('');
   const videoPreview = ref('');
   const videoFile = ref(null);
+  const categories = ref([]);
+
+  function getCategories() {
+      adminApi.get('campus-tour-categories') // Assuming a route exists to get all categories
+        .then((res) => {
+            // Adjust based on actual API response structure for 'index' or a specific 'list' endpoint
+            // Usually pagination response wraps items in 'data' or 'data.data'
+            // If the index endpoint returns paginated data, we might need a ?limit=-1 or similar to get all, 
+            // OR use a specific 'list' endpoint if available. 
+            // For now assuming existing index endpoint returns paginated data in res.data.data
+            categories.value = res.data.data; 
+        })
+        .catch((err) => {
+            console.error(err);
+        });
+  }
+
+  onMounted(() => {
+      getCategories();
+  });
 
   function defaultData(){
     submitData.data.title_ar = '';
     submitData.data.title_en = '';
     submitData.data.image = '';
     submitData.data.link = '';
+    submitData.data.campus_tour_category_id = '';
     
     is_disabled.value = false;
     loading.value = false;
@@ -168,7 +216,7 @@
               submitData.data.title_ar = l.title_ar;
               submitData.data.title_en = l.title_en;
               submitData.data.link = l.link; 
-              submitData.data.link = l.link; 
+              submitData.data.campus_tour_category_id = l.campus_tour_category_id;
               imageUpload.value = l.image;
               if (l.video) {
                   videoPreview.value = l.video; // Assuming API returns URL
@@ -194,7 +242,8 @@
       title_ar: '',
       title_en: '',
       image: '',
-      link: ''
+      link: '',
+      campus_tour_category_id: ''
     }
   });
 
@@ -202,6 +251,7 @@
     return {
       title_ar: {required},
       title_en: {required},
+      campus_tour_category_id: {required},
       link: {} 
     }
   });
@@ -215,7 +265,8 @@
       let formData = new FormData();
       formData.append('title_ar', submitData.data.title_ar);
       formData.append('title_en', submitData.data.title_en);
-      formData.append('link', submitData.data.link);
+      formData.append('link', submitData.data.link ? submitData.data.link : '');
+      formData.append('campus_tour_category_id', submitData.data.campus_tour_category_id);
       
       if(submitData.data.image && typeof submitData.data.image !== 'string') {
           formData.append('image', submitData.data.image);

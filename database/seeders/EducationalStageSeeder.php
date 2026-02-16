@@ -12,9 +12,10 @@ class EducationalStageSeeder extends Seeder
      */
     public function run(): void
     {
-        \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        EducationalStage::truncate();
-        \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        \Illuminate\Support\Facades\Schema::disableForeignKeyConstraints();
+        EducationalStage::query()->delete();
+        \Illuminate\Support\Facades\Schema::enableForeignKeyConstraints();
+
 
         $stages = [
             [

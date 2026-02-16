@@ -12,58 +12,59 @@ class CampusTourSeeder extends Seeder
      */
     public function run(): void
     {
-        CampusTour::truncate();
+        \Illuminate\Support\Facades\Schema::disableForeignKeyConstraints();
+        CampusTour::query()->delete();
+        \Illuminate\Support\Facades\Schema::enableForeignKeyConstraints();
 
-        $tours = [
-            [
-                'title_ar' => 'جولة في المعامل',
-                'title_en' => 'Lab Tour',
-                'image' => 'campus_tours/img-01.png',
-                'video' => null,
-                'link' => null,
-            ],
-            [
-                'title_ar' => 'المكتبة المدرسية',
-                'title_en' => 'School Library',
-                'image' => 'campus_tours/img-02.png',
-                'video' => null,
-                'link' => null,
-            ],
-            [
-                'title_ar' => 'الملاعب الرياضية',
-                'title_en' => 'Sports Fields',
-                'image' => 'campus_tours/img-03.png',
-                'video' => null,
-                'link' => null,
-            ],
-            [
-                'title_ar' => 'الفصول الدراسية',
-                'title_en' => 'Classrooms',
-                'image' => 'campus_tours/img-04.png',
-                'video' => null,
-                'link' => null,
-            ],
-             [
-                'title_ar' => 'فيديو تعريفي',
-                'title_en' => 'Introductory Video',
-                'image' => null,
-                'video' => 'campus_tours/video-01.mp4', // Assuming a video file exists or will be uploaded
-                'link' => null,
-            ],
-             [
-                'title_ar' => 'جولة افتراضية',
-                'title_en' => 'Virtual Tour',
-                'image' => null,
-                'video' => null,
-                'link' => 'https://www.youtube.com/watch?v=example',
-            ],
+        // Ensure we have categories
+        $categories = \App\Models\CampusTourCategory::pluck('id')->toArray();
+        if (empty($categories)) {
+            // Fallback if no categories exist, though they should if Seeders run in order
+            $category = \App\Models\CampusTourCategory::create([
+                'title_ar' => 'عام',
+                'title_en' => 'General',
+            ]);
+            $categories = [$category->id];
+        }
+
+        $items = [
+            ['type' => 'image', 'value' => 'campus_tours/images/img-1.jpg'],
+            ['type' => 'image', 'value' => 'campus_tours/images/img-2.jpg'],
+            ['type' => 'video', 'value' => 'campus_tours/videos/WhatsApp Video 2025-04-08 at 14.49.191.mp4'],
+            ['type' => 'link',  'value' => 'https://www.youtube.com/watch?v=ubidK6mSWDE'],
+            ['type' => 'image', 'value' => 'campus_tours/images/img-3.jpg'],
+            ['type' => 'image', 'value' => 'campus_tours/images/img-4.jpg'],
+            ['type' => 'video', 'value' => 'campus_tours/videos/WhatsApp Video 2025-04-08 at 14.49.192.mp4'],
+            ['type' => 'link',  'value' => 'https://www.youtube.com/watch?v=FFgfcAsNIg4'],
+            ['type' => 'image', 'value' => 'campus_tours/images/img-5.jpg'],
+            ['type' => 'image', 'value' => 'campus_tours/images/img-6.jpg'],
+            ['type' => 'video', 'value' => 'campus_tours/videos/WhatsApp Video 2025-04-08 at 14.49.193.mp4'],
+            ['type' => 'link',  'value' => 'https://www.youtube.com/watch?v=gZxQaZn7tv0'],
+            ['type' => 'image', 'value' => 'campus_tours/images/img-7.jpg'],
+            ['type' => 'image', 'value' => 'campus_tours/images/img-8.jpg'],
+            ['type' => 'video', 'value' => 'campus_tours/videos/WhatsApp Video 2025-04-08 at 14.49.194.mp4'],
+            ['type' => 'link',  'value' => 'https://www.youtube.com/watch?v=WEfb1cyV5aI'],
         ];
 
-        foreach ($tours as $tour) {
-            // Check for duplicate based on title to avoid unique constraint errors if re-seeding without refresh
-            if (!CampusTour::where('title_en', $tour['title_en'])->exists()) {
-                 CampusTour::create($tour);
+        foreach ($items as $index => $item) {
+            $data = [
+                'title_ar' => 'جولة بالمدرسة ' . ($index + 1),
+                'title_en' => 'Campus Tour ' . ($index + 1),
+                'campus_tour_category_id' => $categories[$index % count($categories)],
+                'image' => null,
+                'video' => null,
+                'link' => null,
+            ];
+
+            if ($item['type'] === 'image') {
+                $data['image'] = $item['value'];
+            } elseif ($item['type'] === 'video') {
+                $data['video'] = $item['value'];
+            } elseif ($item['type'] === 'link') {
+                $data['link'] = $item['value'];
             }
+
+            CampusTour::create($data);
         }
     }
 }
