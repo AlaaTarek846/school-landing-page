@@ -18,6 +18,7 @@ class ClassRoomSeeder extends Seeder
         \Illuminate\Support\Facades\Schema::disableForeignKeyConstraints();
         ClassRoom::query()->delete();
         \Illuminate\Support\Facades\Schema::enableForeignKeyConstraints();
+
         // KG
         $kg = EducationalStage::where('title_en', 'Kindergarten')->first();
         if ($kg) {

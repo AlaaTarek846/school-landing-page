@@ -26,7 +26,7 @@ class StoreStudentRegistrationRequest extends FormRequest
             'educational_stage_id' => 'required|exists:educational_stages,id',
             'class_id' => 'required|exists:classes,id',
             'birth_date' => 'required|date',
-            'phone' => 'required|string|max:20',
+                'phone' => ['required', 'string', 'regex:/^01[0125][0-9]{8}$/'],
             'email' => 'nullable|email|max:255',
             'notes' => 'nullable|string',
             'pdf' => 'nullable|file|mimes:pdf|max:2048',

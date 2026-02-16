@@ -16,6 +16,7 @@ class EducationalStageSeeder extends Seeder
         EducationalStage::query()->delete();
         \Illuminate\Support\Facades\Schema::enableForeignKeyConstraints();
 
+
         $stages = [
             [
                 'title_ar' => 'رياض الأطفال',

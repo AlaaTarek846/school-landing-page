@@ -24,8 +24,7 @@ class ContactMessageRequest extends FormRequest
         return [
             'name' => 'required|string|min:2|max:255',
             'email' => 'required|email|max:255',
-            'topic' => 'required|string|max:255',
-            'phone' => 'required|string|max:255',
+            'phone' => ['required', 'string', 'regex:/^01[0125][0-9]{8}$/'],
             'message' => 'required|string|max:1000',
         ];
     }
