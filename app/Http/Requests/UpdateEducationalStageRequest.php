@@ -24,7 +24,8 @@ class UpdateEducationalStageRequest extends FormRequest
         return [
             'title_ar' => 'required|string|max:255',
             'title_en' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'description_ar' => 'required|string',
+            'description_en' => 'required|string',
         ];
     }
 }

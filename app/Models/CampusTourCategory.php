@@ -5,21 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CampusTour extends Model
+class CampusTourCategory extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'title_ar',
         'title_en',
-        'image',
-        'video',
-        'link',
-        'campus_tour_category_id',
     ];
 
-    public function category()
+    public function campusTours()
     {
-        return $this->belongsTo(CampusTourCategory::class, 'campus_tour_category_id');
+        return $this->hasMany(CampusTour::class);
     }
 }

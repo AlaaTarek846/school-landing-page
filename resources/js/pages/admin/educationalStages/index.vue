@@ -6,11 +6,11 @@
           <loader v-if="loading" />
           <div class="card custom-card">
             <div class="card-header justify-content-between">
-              <div class="prism-toggle">
-                <button @click="showModelCreate" class="btn btn-sm btn-primary-light" data-bs-toggle="modal" data-bs-target="#educational-stages-model">
-                  <i class="ri-add-line me-1 fw-semibold align-middle"></i>{{ $t('global.add') }}
-                </button>
-              </div>
+<!--              <div class="prism-toggle">-->
+<!--                <button @click="showModelCreate" class="btn btn-sm btn-primary-light" data-bs-toggle="modal" data-bs-target="#educational-stages-model">-->
+<!--                  <i class="ri-add-line me-1 fw-semibold align-middle"></i>{{ $t('global.add') }}-->
+<!--                </button>-->
+<!--              </div>-->
             </div>
             <div class="card-body">
               <div class="table-responsive mb-2">
@@ -18,7 +18,6 @@
                   <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">{{ $t('global.image') }}</th>
                     <th scope="col">العنوان</th>
                     <th scope="col">{{ $t('global.action') }}</th>
                   </tr>
@@ -26,13 +25,6 @@
                   <tbody v-if="data && data.length">
                   <tr v-for="(item,index) in data" :key="item.id">
                     <td scope="row">{{index + 1}}</td>
-                    <td>
-                      <div class="me-3" v-if="item.image">
-                        <span class="avatar avatar-xxl bg-light">
-                            <img :src="item.image" alt="" style="width: 100%; height: 100%">
-                        </span>
-                      </div>
-                    </td>
                     <td>{{item.title_ar}}</td>
                     <td>
                       <div class="hstack gap-2 fs-15">

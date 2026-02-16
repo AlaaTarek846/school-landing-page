@@ -12,7 +12,10 @@ class TeamResource extends JsonResource
     {
         return [
             "id"        => $this->id,
-            "name"      => $this->name,
+            "name_ar"      => $this->name_ar,
+            "name_en"      => $this->name_en,
+            "job_ar"      => $this->job_ar,
+            "job_en"      => $this->job_en,
             "media"     => $this->media,
         ];
     }

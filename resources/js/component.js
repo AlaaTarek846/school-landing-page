@@ -34,7 +34,9 @@ import classRooms from "./pages/admin/classRooms/index.vue";
 import campusTours from "./pages/admin/campusTours/index.vue";
 import studentRegistrations from "./pages/admin/studentRegistrations/index.vue";
 
-function Components (app) {
+import campusTourCategories from "./pages/admin/campusTourCategories/index.vue";
+
+function Components(app) {
     app.component(`login`, Login);
     app.component(`home-slider`, homeSlider);
     app.component(`property-type`, propertyType);
@@ -71,6 +73,7 @@ function Components (app) {
     app.component(`educational-stages`, educationalStages);
     app.component(`class-rooms`, classRooms);
     app.component(`campus-tours`, campusTours);
+    app.component(`campus-tour-categories-component`, campusTourCategories);
     app.component(`student-registrations`, studentRegistrations);
 }
 

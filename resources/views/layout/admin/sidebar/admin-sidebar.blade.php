@@ -81,6 +81,19 @@
     </li>
     <!-- End::School Modules -->
 
+    <li class="slide">
+        <a href="{{ route('admin.page.campus-tour-categories') }}" class="side-menu__item">
+            <i class="ri-list-check-2 side-menu__icon"></i>
+            <span class="side-menu__label">{{ __('global.CampusTourCategories') }}</span>
+        </a>
+    </li>
+    <li class="slide">
+        <a href="{{ route('admin.page.campus-tours') }}" class="side-menu__item">
+            <i class="ri-building-line side-menu__icon"></i>
+            <span class="side-menu__label">{{ __('global.CampusTours') }}</span>
+        </a>
+    </li>
+
     <!-- Start::about -->
         <li class="slide">
             <a href="{{ route('admin.page.one-about') }}"
@@ -91,25 +104,7 @@
         </li>
     <!-- End::about -->
 
-    <!-- Start::service -->
-        <li class="slide">
-            <a href="{{ route('admin.page.services') }}"
-               class="side-menu__item {{ request()->routeIs('admin.page.services') ? 'active' : '' }}">
-                <i class="bi bi-map side-menu__icon"></i>
-                <span class="side-menu__label">صفحة الخدمات</span>
-            </a>
-        </li>
-    <!-- End::service -->
 
-    <!-- Start::faq -->
-    <li class="slide">
-        <a href="{{ route('admin.page.gallery') }}"
-           class="side-menu__item {{ request()->routeIs('admin.page.gallery') ? 'active' : '' }}">
-            <i class="bi bi-map side-menu__icon"></i>
-            <span class="side-menu__label">صور</span>
-        </a>
-    </li>
-    <!-- End::faq -->
     
     <li
             class="slide has-sub {{ request()->routeIs('admin.page.setting') || request()->routeIs('admin.page.policies') || request()->routeIs('admin.page.faq') || request()->routeIs('admin.page.subscribes') || request()->routeIs('admin.page.contact-messages') ? 'active open' : '' }}">

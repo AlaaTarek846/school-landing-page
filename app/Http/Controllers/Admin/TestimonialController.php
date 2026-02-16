@@ -37,7 +37,7 @@ class TestimonialController extends Controller
     {
         $testimonial = Testimonial::create(Arr::except($request->validated(),['image']));
         if ($request->hasFile('image'))
-            saveFiles($request->image,$testimonial,"testimonial");
+            saveFiles($request->image, $testimonial, "testimonial", "testimonial");
 
         return responseJson([],'Created Successfully',200);
     }
@@ -51,7 +51,7 @@ class TestimonialController extends Controller
     public function update(TestimonialRequest $request, Testimonial $testimonial)
     {
         if ($request->hasFile('image')) 
-            saveFiles($request->image,$testimonial,"testimonial",null,'update');
+            saveFiles($request->image, $testimonial, "testimonial", "testimonial", 'update');
 
         $testimonial->update(Arr::except($request->validated(),['image']));
         return responseJson([],'Updated Successfully',200);

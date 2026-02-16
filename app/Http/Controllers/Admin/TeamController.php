@@ -33,7 +33,7 @@ class TeamController extends Controller
     public function store(TeamRequest $request)
     {
         $team = Team::create(Arr::except($request->validated(),['image']));
-        saveFiles($request->image,$team,"team");
+        saveFiles($request->image, $team, "team", "team");
         return responseJson([],'Created Successfully',200);
     }
 
@@ -46,7 +46,7 @@ class TeamController extends Controller
     public function update(TeamRequest $request, Team $team)
     {
         if ($request->hasFile('image')) 
-            saveFiles($request->image,$team,"team",null,'update');
+            saveFiles($request->image, $team, "team", "team", 'update');
 
         $team->update(Arr::except($request->validated(),['image']));
         return responseJson([],'Updated Successfully',200);

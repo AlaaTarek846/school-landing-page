@@ -22,8 +22,10 @@ class TeamRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => "required|string|max:200",
-            "job" => "required|string|max:200",
+            "name_ar" => "required|string|max:200",
+            "name_en" => "required|string|max:200",
+            "job_ar" => "required|string|max:200",
+            "job_en" => "required|string|max:200",
             'image' => [$this->method() == "PUT" ? 'nullable':'required','image','mimes:jpeg,png,jpg,gif','max:2048'],
         ];
     }

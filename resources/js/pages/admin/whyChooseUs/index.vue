@@ -6,12 +6,12 @@
           <loader v-if="loading" />
           <div class="card custom-card">
             <div class="card-header justify-content-between">
-              <div class="prism-toggle">
-                <button @click="showModelCreate" class="btn btn-sm btn-primary-light" data-bs-toggle="modal" data-bs-target="#why-choose-us-model">
-                  <i class="ri-add-line me-1 fw-semibold align-middle"></i>{{ $t('global.add') }}
-                </button>
+<!--              <div class="prism-toggle">-->
+<!--                <button @click="showModelCreate" class="btn btn-sm btn-primary-light" data-bs-toggle="modal" data-bs-target="#why-choose-us-model">-->
+<!--                  <i class="ri-add-line me-1 fw-semibold align-middle"></i>{{ $t('global.add') }}-->
+<!--                </button>-->
               </div>
-            </div>
+
             <div class="card-body">
               <div class="table-responsive mb-2">
                 <table class="table text-nowrap table-striped">

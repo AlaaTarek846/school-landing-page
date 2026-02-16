@@ -26,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+
 //        $shareSetting = Setting::first();
 //        $galleries = Gallery::whereStatus(1)->take(6)->get();
 //
@@ -37,5 +38,15 @@ class AppServiceProvider extends ServiceProvider
 //        ]);
 //        Gate::policy(StoreProduct::class, StoreProductPolicy::class);
         Paginator::useBootstrap();
+
+        if (!app()->runningInConsole()) {
+            $shareSetting = Setting::first();
+            $galleries = Gallery::whereStatus(1)->take(6)->get();
+
+            View::share([
+                'shareSetting' => $shareSetting,
+                'galleries' => $galleries,
+            ]);
+        }
     }
 }

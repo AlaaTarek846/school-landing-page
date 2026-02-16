@@ -1,0 +1,23 @@
+<?php
+
+return [
+    'CampusTourCategories' => 'Campus Tour Categories',
+    'CampusTours' => 'Campus Tours',
+    'Add' => 'Add',
+    'Edit' => 'Edit',
+    'Delete' => 'Delete',
+    'Actions' => 'Actions',
+    'TitleAr' => 'Title (Arabic)',
+    'TitleEn' => 'Title (English)',
+    'CreatedSuccessfully' => 'Created Successfully',
+    'UpdatedSuccessfully' => 'Updated Successfully',
+    'DeletedSuccessfully' => 'Deleted Successfully',
+    'home' => 'Home',
+    'NoDataFound' => 'No Data Found',
+    'Previous' => 'Previous',
+    'Next' => 'Next',
+    'add' => 'Add',
+    'update' => 'Update',
+    'Close' => 'Close',
+    'save' => 'Save',
+];

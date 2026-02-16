@@ -13,11 +13,11 @@
                         class="w-full w-100"
                 ></Select>
               </div>
-              <div class="prism-toggle">
-                <button @click="showModelCreate" class="btn btn-sm btn-primary-light" data-bs-toggle="modal" data-bs-target="#area-model">
-                  <i class="ri-add-line me-1 fw-semibold align-middle"></i>{{ $t('global.add') }}
-                </button>
-              </div>
+<!--              <div class="prism-toggle">-->
+<!--                <button @click="showModelCreate" class="btn btn-sm btn-primary-light" data-bs-toggle="modal" data-bs-target="#area-model">-->
+<!--                  <i class="ri-add-line me-1 fw-semibold align-middle"></i>{{ $t('global.add') }}-->
+<!--                </button>-->
+<!--              </div>-->
             </div>
             <div class="card-body">
               <div class="table-responsive mb-2">
@@ -25,21 +25,14 @@
                   <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">العنوان الرئيسي</th>
-                    <th scope="col">العنوان الفرعي</th>
-                    <th scope="col">{{ $t('label.status') }}</th>
+                    <th scope="col">العنوان </th>
                     <th scope="col">{{ $t('global.action') }}</th>
                   </tr>
                   </thead>
                   <tbody v-if="data && data.length">
                   <tr v-for="(item,index) in data" :key="item.id">
                     <td scope="row">{{index + 1}}</td>
-                    <td>{{item.title_ar}}</td>
-                    <td>{{item.title_color_ar}}</td>
-                    <td>
-                      <span class="badge rounded-pill bg-success-transparent" v-if="item.status">{{$t('global.activated')}}</span>
-                      <span class="badge rounded-pill bg-danger-transparent" v-else>{{$t('global.Inactive')}}</span>
-                    </td>
+                    <td>{{item.title}}</td>
                     <td>
                       <div class="hstack gap-2 fs-15">
                         <button
@@ -47,9 +40,9 @@
                                 data-bs-toggle="modal" data-bs-target="#area-model"
                                 class="btn btn-icon btn-sm btn-info-transparent rounded-pill"><i
                             class="ri-edit-line"></i></button>
-                        <a href="#" @click.prevent="deleteData(item.id,index)"
-                           class="btn btn-icon btn-sm btn-danger-transparent rounded-pill"><i
-                            class="ri-delete-bin-line"></i></a>
+<!--                        <a href="#" @click.prevent="deleteData(item.id,index)"-->
+<!--                           class="btn btn-icon btn-sm btn-danger-transparent rounded-pill"><i-->
+<!--                            class="ri-delete-bin-line"></i></a>-->
                       </div>
                     </td>
                   </tr>

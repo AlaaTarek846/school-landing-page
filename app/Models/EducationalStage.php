@@ -12,7 +12,8 @@ class EducationalStage extends Model
     protected $fillable = [
         'title_ar',
         'title_en',
-        'image',
+        'description_ar',
+        'description_en',
     ];
 
     public function classes()

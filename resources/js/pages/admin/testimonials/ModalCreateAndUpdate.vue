@@ -13,52 +13,98 @@
                     <div class="row">
 
                       <div class="col-md-6 mb-2">
-                        <label class="form-label">الاسم</label>
-                        <input type="text" class="form-control form-control-lg"  v-model="v$.name.$model"
-                               :class="{'is-invalid': v$.name.$error || errors[`name`],
-                                     'is-valid': !v$[`name`].$invalid && !errors[`name`]}">
+                        <label class="form-label">الاسم (عربي)</label>
+                        <input type="text" class="form-control form-control-lg"  v-model="v$.name_ar.$model"
+                               :class="{'is-invalid': v$.name_ar.$error || errors[`name_ar`],
+                                     'is-valid': !v$[`name_ar`].$invalid && !errors[`name_ar`]}">
 
                         <div class="invalid-feedback">
-                          <span v-if="v$[`name`].required.$invalid">{{ $t('validation.fieldRequired') }}<br /> </span>
-                          <span v-if="v$.job.maxLength.$invalid">{{ $t('validation.NameMustHaveAtLeast', { max: 200 }) }}<br /></span>
+                          <span v-if="v$[`name_ar`].required.$invalid">{{ $t('validation.fieldRequired') }}<br /> </span>
+                          <span v-if="v$.name_ar.maxLength.$invalid">{{ $t('validation.NameMustHaveAtLeast', { max: 200 }) }}<br /></span>
                         </div>
-
-                        <template v-if="errors[`name`]">
-                          <error-message v-for="(errorMessage, index) in errors[`name`]" :key="index">
+                        <template v-if="errors[`name_ar`]">
+                          <error-message v-for="(errorMessage, index) in errors[`name_ar`]" :key="index">
                             {{ errorMessage }}
                           </error-message>
                         </template>
                       </div>
 
                       <div class="col-md-6 mb-2">
-                          <label class="form-label">الوظيفة</label>
-                          <input type="text" class="form-control form-control-lg"  v-model="v$.job.$model"
-                                 :class="{'is-invalid': v$.job.$error || errors[`job`],
-                                     'is-valid': !v$[`job`].$invalid && !errors[`job`]}">
+                        <label class="form-label">الاسم (English)</label>
+                        <input type="text" class="form-control form-control-lg"  v-model="v$.name_en.$model"
+                               :class="{'is-invalid': v$.name_en.$error || errors[`name_en`],
+                                     'is-valid': !v$[`name_en`].$invalid && !errors[`name_en`]}">
+
                         <div class="invalid-feedback">
-                          <span v-if="v$.job.maxLength.$invalid">{{ $t('validation.JobMustHaveAtLeast', { max: 200 }) }}<br /></span>
+                          <span v-if="v$[`name_en`].required.$invalid">{{ $t('validation.fieldRequired') }}<br /> </span>
+                          <span v-if="v$.name_en.maxLength.$invalid">{{ $t('validation.NameMustHaveAtLeast', { max: 200 }) }}<br /></span>
                         </div>
+                        <template v-if="errors[`name_en`]">
+                          <error-message v-for="(errorMessage, index) in errors[`name_en`]" :key="index">
+                            {{ errorMessage }}
+                          </error-message>
+                        </template>
+                      </div>
 
-
-                          <template v-if="errors[`job`]">
-                            <error-message v-for="(errorMessage, index) in errors[`job`]" :key="index">
+                      <div class="col-md-6 mb-2">
+                          <label class="form-label">الوظيفة (عربي)</label>
+                          <input type="text" class="form-control form-control-lg"  v-model="v$.job_ar.$model"
+                                 :class="{'is-invalid': v$.job_ar.$error || errors[`job_ar`],
+                                     'is-valid': !v$[`job_ar`].$invalid && !errors[`job_ar`]}">
+                        <div class="invalid-feedback">
+                          <span v-if="v$.job_ar.maxLength.$invalid">{{ $t('validation.JobMustHaveAtLeast', { max: 200 }) }}<br /></span>
+                        </div>
+                          <template v-if="errors[`job_ar`]">
+                            <error-message v-for="(errorMessage, index) in errors[`job_ar`]" :key="index">
                               {{ errorMessage }}
                             </error-message>
                           </template>
                         </div>
-                      <div class="col-md-12 mb-2">
-                        <label class="form-label">التعليق</label>
-                        <textarea type="text" class="form-control form-control-lg"  v-model="v$.description.$model"
-                                  :class="{'is-invalid': v$.description.$error || errors[`description`],
-                                     'is-valid': !v$[`description`].$invalid && !errors[`description`]}"> </textarea>
+                      <div class="col-md-6 mb-2">
+                          <label class="form-label">الوظيفة(English)</label>
+                          <input type="text" class="form-control form-control-lg"  v-model="v$.job_en.$model"
+                                 :class="{'is-invalid': v$.job_en.$error || errors[`job_en`],
+                                     'is-valid': !v$[`job_en`].$invalid && !errors[`job_en`]}">
+                        <div class="invalid-feedback">
+                          <span v-if="v$.job_en.maxLength.$invalid">{{ $t('validation.JobMustHaveAtLeast', { max: 200 }) }}<br /></span>
+                        </div>
+                          <template v-if="errors[`job_en`]">
+                            <error-message v-for="(errorMessage, index) in errors[`job_en`]" :key="index">
+                              {{ errorMessage }}
+                            </error-message>
+                          </template>
+                        </div>
+                      <div class="col-md-6 mb-2">
+                        <label class="form-label">التعليق (عربي)</label>
+                        <textarea type="text" class="form-control form-control-lg"  v-model="v$.description_ar.$model"
+                                  :class="{'is-invalid': v$.description_ar.$error || errors[`description_ar`],
+                                     'is-valid': !v$[`description_ar`].$invalid && !errors[`description_ar`]}"> </textarea>
 
                         <div class="invalid-feedback">
-                          <span v-if="v$[`description`].required.$invalid">{{ $t('validation.fieldRequired') }}<br /> </span>
-                          <span v-if="v$.job.maxLength.$invalid">{{ $t('validation.CommentMustHaveAtLeast', { max: 200 }) }}<br /></span>
+                          <span v-if="v$[`description_ar`].required.$invalid">{{ $t('validation.fieldRequired') }}<br /> </span>
+                          <span v-if="v$.description_ar.maxLength.$invalid">{{ $t('validation.CommentMustHaveAtLeast', { max: 200 }) }}<br /></span>
 
                         </div>
-                        <template v-if="errors[`description`]">
-                          <error-message v-for="(errorMessage, index) in errors[`description`]" :key="index">
+                        <template v-if="errors[`description_ar`]">
+                          <error-message v-for="(errorMessage, index) in errors[`description_ar`]" :key="index">
+                            {{ errorMessage }}
+                          </error-message>
+                        </template>
+                      </div>
+
+                      <div class="col-md-6 mb-2">
+                        <label class="form-label">التعليق (English)</label>
+                        <textarea type="text" class="form-control form-control-lg"  v-model="v$.description_en.$model"
+                                  :class="{'is-invalid': v$.description_en.$error || errors[`description_en`],
+                                     'is-valid': !v$[`description_en`].$invalid && !errors[`description_en`]}"> </textarea>
+
+                        <div class="invalid-feedback">
+                          <span v-if="v$[`description_en`].required.$invalid">{{ $t('validation.fieldRequired') }}<br /> </span>
+                          <span v-if="v$.description_en.maxLength.$invalid">{{ $t('validation.CommentMustHaveAtLeast', { max: 200 }) }}<br /></span>
+
+                        </div>
+                        <template v-if="errors[`description_en`]">
+                          <error-message v-for="(errorMessage, index) in errors[`description_en`]" :key="index">
                             {{ errorMessage }}
                           </error-message>
                         </template>
@@ -66,7 +112,7 @@
 
                       <div class="col-md-6 mb-2"></div>
                         <div class="col-md-12 mt-3">
-                          <label class="form-label">صورة  (71 * 70)</label>
+                          <label class="form-label">صورة  (550 * 600)</label>
                           <div class="row img-div-position">
                             <div class="col-12 text-end">
                               <button
@@ -186,9 +232,13 @@
   function defaultData(){
     submitData.data.status = true;
     submitData.data.image = '';
-    submitData.data.name = '';
-    submitData.data.description = '';
-    submitData.data.job = '';
+    submitData.data.image = '';
+    submitData.data.name_ar = '';
+    submitData.data.name_en = '';
+    submitData.data.description_ar = '';
+    submitData.data.description_en = '';
+    submitData.data.job_ar = '';
+    submitData.data.job_en = '';
     is_disabled.value = false;
     loading.value = false;
     errors.value = [];
@@ -207,9 +257,12 @@
             .then((res) => {
               loading.value = true;
               let l = res.data.data;
-              submitData.data.description = l.description;
-              submitData.data.name = l.name;
-              submitData.data.job = l.job;
+              submitData.data.description_ar = l.description_ar;
+              submitData.data.description_en = l.description_en;
+              submitData.data.name_ar = l.name_ar;
+              submitData.data.name_en = l.name_en;
+              submitData.data.job_ar = l.job_ar;
+              submitData.data.job_en = l.job_en;
               submitData.data.status = l.status == 1;
               imageUpload.value = l.media;
             })
@@ -231,17 +284,24 @@
     data:{
       status: true,
       image: '',
-      description: '',
-      name: '',
-      job: '',
+      image: '',
+      description_ar: '',
+      description_en: '',
+      name_ar: '',
+      name_en: '',
+      job_ar: '',
+      job_en: '',
     }
   });
 
   const rules = computed(() => {
     return {
-      name: {minLength: minLength(1),maxLength:maxLength(100),required,},
-      description: {minLength: minLength(1),maxLength:maxLength(200),required,},
-      job: {maxLength:maxLength(200)},
+      name_ar: {minLength: minLength(1),maxLength:maxLength(200),required,},
+      name_en: {minLength: minLength(1),maxLength:maxLength(200),required,},
+      description_ar: {minLength: minLength(1),maxLength:maxLength(300),required,},
+      description_en: {minLength: minLength(1),maxLength:maxLength(300),required,},
+      job_ar: {maxLength:maxLength(200)},
+      job_en: {maxLength:maxLength(200)},
       image: {required: requiredIf( (value) => {
           return props.type == 'create' || !imageUpload.value;
         })
@@ -257,9 +317,12 @@
       errors.value = {};
 
       let formData = new FormData();
-      formData.append('name', submitData.data.name);
-      formData.append('description', submitData.data.description);
-      formData.append('job', submitData.data.job);
+      formData.append('name_ar', submitData.data.name_ar);
+      formData.append('name_en', submitData.data.name_en);
+      formData.append('description_ar', submitData.data.description_ar);
+      formData.append('description_en', submitData.data.description_en);
+      formData.append('job_ar', submitData.data.job_ar);
+      formData.append('job_en', submitData.data.job_en);
       formData.append('status', submitData.data.status ? 1 : 0);
       if(submitData.data.image) {
         formData.append('image', submitData.data.image);
