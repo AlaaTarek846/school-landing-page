@@ -18,7 +18,8 @@
                   <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">{{ $t('global.TitleAr') }}</th>
+                    <th scope="col">{{ $t('global.Image') }}</th>
+                    <th scope="col">{{ $t('global.Title') }}</th>
                     <th scope="col">{{ $t('global.action') }}</th>
                   </tr>
                   </thead>
