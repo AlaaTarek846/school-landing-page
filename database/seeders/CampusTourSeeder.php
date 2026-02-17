@@ -28,21 +28,21 @@ class CampusTourSeeder extends Seeder
         }
 
         $items = [
-            ['type' => 'image', 'value' => 'campus_tours/images/img-1.jpg'],
-            ['type' => 'image', 'value' => 'campus_tours/images/img-2.jpg'],
-            ['type' => 'video', 'value' => 'campus_tours/videos/WhatsApp Video 2025-04-08 at 14.49.191.mp4'],
+            ['type' => 'image', 'value' => '/storage/campus_tours/images/img-1.jpg'],
+            ['type' => 'image', 'value' => '/storage/campus_tours/images/img-2.jpg'],
+            ['type' => 'video', 'value' => '/storage/campus_tours/videos/WhatsApp Video 2025-04-08 at 14.49.191.mp4'],
             ['type' => 'link',  'value' => 'https://www.youtube.com/watch?v=ubidK6mSWDE'],
-            ['type' => 'image', 'value' => 'campus_tours/images/img-3.jpg'],
-            ['type' => 'image', 'value' => 'campus_tours/images/img-4.jpg'],
-            ['type' => 'video', 'value' => 'campus_tours/videos/WhatsApp Video 2025-04-08 at 14.49.192.mp4'],
+            ['type' => 'image', 'value' => '/storage/campus_tours/images/img-3.jpg'],
+            ['type' => 'image', 'value' => '/storage/campus_tours/images/img-4.jpg'],
+            ['type' => 'video', 'value' => '/storage/campus_tours/videos/WhatsApp Video 2025-04-08 at 14.49.192.mp4'],
             ['type' => 'link',  'value' => 'https://www.youtube.com/watch?v=FFgfcAsNIg4'],
-            ['type' => 'image', 'value' => 'campus_tours/images/img-5.jpg'],
-            ['type' => 'image', 'value' => 'campus_tours/images/img-6.jpg'],
-            ['type' => 'video', 'value' => 'campus_tours/videos/WhatsApp Video 2025-04-08 at 14.49.193.mp4'],
+            ['type' => 'image', 'value' => '/storage/campus_tours/images/img-5.jpg'],
+            ['type' => 'image', 'value' => '/storage/campus_tours/images/img-6.jpg'],
+            ['type' => 'video', 'value' => '/storage/campus_tours/videos/WhatsApp Video 2025-04-08 at 14.49.193.mp4'],
             ['type' => 'link',  'value' => 'https://www.youtube.com/watch?v=gZxQaZn7tv0'],
-            ['type' => 'image', 'value' => 'campus_tours/images/img-7.jpg'],
-            ['type' => 'image', 'value' => 'campus_tours/images/img-8.jpg'],
-            ['type' => 'video', 'value' => 'campus_tours/videos/WhatsApp Video 2025-04-08 at 14.49.194.mp4'],
+            ['type' => 'image', 'value' => '/storage/campus_tours/images/img-7.jpg'],
+            ['type' => 'image', 'value' => '/storage/campus_tours/images/img-8.jpg'],
+            ['type' => 'video', 'value' => '/storage/campus_tours/videos/WhatsApp Video 2025-04-08 at 14.49.194.mp4'],
             ['type' => 'link',  'value' => 'https://www.youtube.com/watch?v=WEfb1cyV5aI'],
         ];
 

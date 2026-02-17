@@ -13,6 +13,10 @@ use App\Models\Testimonial;
 use App\Models\WhyChooseUs;
 use Illuminate\Support\Str;
 
+use App\Models\CampusTourCategory;
+use App\Models\Facility;
+use App\Models\OneAbout;
+
 class HomeController extends Controller
 {
     /**
@@ -30,7 +34,12 @@ class HomeController extends Controller
         $whyChooseUs = WhyChooseUs::get();
         $educationalStages = EducationalStage::with('classes')->get();
         $campusTours = CampusTour::all();
+        $campusTourCategories = CampusTourCategory::all();
 
-        return view('website.home', compact('homeSlider', 'testimonials', 'whyChooseUs', 'educationalStages', 'campusTours', 'teams'));
+
+        $oneAbout = OneAbout::with('firstPhoto')->first();
+        $facility = Facility::with('details')->first();
+        return view('website.home', compact('homeSlider', 'testimonials', 'whyChooseUs', 'educationalStages', 'campusTours', 'teams','oneAbout', 'facility'));
+
     }
 }

@@ -17,4 +17,10 @@ class FacilityDetail extends Model
     {
         return $this->belongsTo(Facility::class);
     }
+
+    public function getTitleAttribute($value)
+    {
+        return app()->getLocale() === 'ar' ? $this->title_ar : $this->title_en;
+    }
+
 }

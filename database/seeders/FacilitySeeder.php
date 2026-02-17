@@ -22,7 +22,7 @@ class FacilitySeeder extends Seeder
                 'title_en' => 'School Facilities',
                 'description_ar' => 'معامل حديثة ومجهزة بأحدث التقنيات',
                 'description_en' => 'Modern labs equipped with the latest technology',
-                'image' => 'facilities/achivements.jpg',
+                'image' => '/storage/facilities/achivements.jpg',
             ]
         ];
 

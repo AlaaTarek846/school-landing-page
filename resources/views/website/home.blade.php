@@ -140,49 +140,13 @@
                 <div class="row align-items-center g-3 g-lg-0">
                     <div class="col-lg-6">
                         <div class="skill-box bg-white p-4 rounded box-shadow">
-                            <p class="text-uppercase mb-1">About Agency</p>
-                            <h3 class="mb-2">Leading Digital Agency for Business Solution.</h3>
-                            <p class="text-muted">When a good idea comes, you know, part of my job is to move it around,
-                                just see what people think, get people talking about it.</p>
-                            <div class="skills">
-                                <div class="mt-4">
-                                    <p class="fw-bold mb-2">Web Design</p>
-                                    <div class="progress">
-                                        <div class="progress-bar rounded" style="width:80%;">
-                                            <p class="progress-value fs-15 fw-bold">80%</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mt-4">
-                                    <p class="fw-bold mb-2">Development</p>
-                                    <div class="progress">
-                                        <div class="progress-bar rounded" style="width:60%;">
-                                            <div class="progress-value fs-15 fw-bold">60%</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mt-4">
-                                    <p class="fw-bold mb-2">Branding</p>
-                                    <div class="progress">
-                                        <div class="progress-bar rounded" style="width:40%;">
-                                            <div class="progress-value fs-15 fw-bold">40%</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mt-4">
-                                    <p class="fw-bold mb-2">Code</p>
-                                    <div class="progress">
-                                        <div class="progress-bar rounded" style="width:75%;">
-                                            <div class="progress-value fs-15 fw-bold">75%</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <h3 class="mb-2">{{ $oneAbout->title ?? '' }}</h3>
+                            <p class="text-muted">{{ $oneAbout->description ?? '' }}</p>
                         </div>
                     </div>
                     <!--end col-->
                     <div class="col-lg-6 about-img">
-                        <img src="{{asset('website/images/about.jpg')}}" class="img-fluid rounded box-shadow" alt="">
+                        <img src="{{ isset($oneAbout) && $oneAbout->first_photo ? $oneAbout->first_photo->url : asset('website/images/about.jpg') }}" class="img-fluid rounded box-shadow" alt="">
                     </div>
                     <!--end col-->
                 </div>
@@ -232,95 +196,42 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
-                        <div class="counter-box">
-                            <h4>Our Achivements</h4>
-                            <p class="text-muted mt-2">You can combine all the zoric You can combine all the zoric templates
-                                into a single one, you can take a component from the Application theme and use it in the
-                                Website. It seems that only fragments of the original text remain in only fragments the Lorem Ipsum texts used today.</p>
+                            <h4>{{ $facility->{'title_'.app()->getLocale()} ?? '' }}</h4>
+                            <p class="text-muted mt-2">{{ $facility->{'description_'.app()->getLocale()} ?? '' }}</p>
 
                             <div class="mt-4 mb-5">
                                 <div class="row" id="counter">
-
-                                    <div class="col-md-6">
-                                        <div class="counter-box mt-4">
-                                            <div class="d-flex">
-                                                <div class="counter-icon">
-                                                    <i class="mdi mdi-heart"></i>
-                                                </div>
-                                                <div class="flex-grow-1 ms-3">
-                                                    <h4 class="counter_value" data-target="485">0</h4>
-                                                    <p class="text-muted">Happy Clients</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--end counter-box-->
-                                    </div>
-                                    <!-- END COL -->
-
-                                    <div class="col-md-6">
-                                        <div class="counter-box mt-4">
-                                            <div class="d-flex">
-                                                <div class="counter-icon">
-                                                    <i class="mdi mdi-layers"></i>
-                                                </div>
-                                                <div class="flex-grow-1 ms-3">
-                                                    <h4 class="counter_value" data-target="536">0</h4>
-                                                    <p class="text-muted">Projects Completed</p>
+                                   @if($facility->details)
+                                       @foreach($facility->details as $detail)
+                                        <div class="col-md-6">
+                                            <div class="counter-box mt-4">
+                                                <div class="d-flex">
+                                                    <div class="counter-icon">
+                                                        <i class="mdi mdi-layers"></i>
+                                                    </div>
+                                                    <div class="flex-grow-1 mx-3">
+                                                    <h4 class="counter_value" data-target="{{ $detail->count }}">{{ $detail->count }}</h4>
+                                                    <p class="text-muted">{{ $detail->title }}</p>
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <!--end counter-box-->
                                         </div>
-                                        <!--end counter-box-->
-                                    </div>
-                                    <!-- END COL -->
+                                        <!-- END COL -->
+                                        @endforeach
+                                    @endif
                                 </div>
-                                <!-- END ROW -->
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="counter-box mt-4">
-                                            <div class="d-flex">
-                                                <div class="counter-icon">
-                                                    <i class="mdi mdi-cloud-download"></i>
-                                                </div>
-                                                <div class="flex-grow-1 ms-3">
-                                                    <h4 class="counter_value" data-target="1652">0</h4>
-                                                    <p class="text-muted mb-0">Files Downloaded</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--end counter-box-->
-                                    </div>
-                                    <!-- END COL -->
-                                    <div class="col-md-6">
-                                        <div class="counter-box mt-4">
-                                            <div class="d-flex">
-                                                <div class="counter-icon">
-                                                    <i class="mdi mdi-code-not-equal-variant"></i>
-                                                </div>
-                                                <div class="flex-grow-1 ms-3">
-                                                    <h4 class="counter_value" data-target="14652">0</h4>
-                                                    <p class="text-muted mb-0">Liens Of Code</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--end counter-box-->
-                                    </div>
-                                    <!-- END COL -->
-                                </div>
-                                <!-- END ROW -->
+                                <!-- END ROW -->                    
                             </div>
                         </div>
-                    </div>
-                    <!-- END COL -->
 
                     <div class="col-lg-6">
                         <div class="img">
-                            <img src="{{asset('website/images/achivements.jpg')}}" class="img-fluid box-shadow-lg rounded" alt="">
+                            <img src="{{ isset($facility) && $facility->image ? $facility->image : asset('website/images/achivements.jpg')}}" class="img-fluid box-shadow-lg rounded" alt="">
                         </div>
                     </div>
-                    <!-- end col -->
                 </div>
-                <!--end row-->
+                <!-- end col -->
             </div>
             <!--end container-->
         </section>
@@ -351,7 +262,7 @@
                                 <button type="button" data-bs-target="#testimonialSlider" data-bs-slide-to="{{ $index }}"
                                     class="active" aria-current="true" aria-label="Slide 1"><img
                                         src="{{ $testimonial->media?->url }}"
-                                        onerror='src="{{asset('website/images/users/img-5.jpg')}}"' alt=""
+                                        onerror="src='{{asset("website/images/users/img-5.jpg")}}'" alt=""
                                         class="testi-img  img-fluid rounded mx-auto d-block"></button>
                                 @endforeach
                             </div>
@@ -413,7 +324,7 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="team-box text-center">
                             <div class="team-img position-relative">
-                                <img src="{{ $team->media?->url }}" onerror="src='{{asset('website/images/users/img-2.jpg')}}'" class="img-fluid rounded" alt="">
+                                <img src="{{ $team->media?->url }}" onerror="src='{{asset("website/images/users/img-2.jpg")}}'" class="img-fluid rounded" alt="">
                                 <div class="team-content">
 {{--                                    <ul class="list-inline mb-0 p-0">--}}
 {{--                                        <li class="list-inline-item"><a href="#"><i class="mdi mdi-facebook"></i></a></li>--}}
@@ -446,11 +357,10 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-7">
                         <div class="header-title text-center">
-                            <p class="text-uppercase text-muted mb-2">Portfolio</p>
-                            <h3>Our Works</h3>
+                            <p class="text-uppercase text-muted mb-2">{{ __('website.portfolio') }}</p>
+                            <h3>{{ __('website.our_works') }}</h3>
                             <div class="title-border mt-3"></div>
-                            <p class="title-desc text-muted mt-3">We craft digital, graphic and dimensional thinking, to
-                                create category leading brand experiences that have meaning and add a value.</p>
+                            <p class="title-desc text-muted mt-3">{{ __('website.portfolio_desc') }}</p>
                         </div>
                     </div>
                     <!--end col-->
@@ -462,15 +372,11 @@
                         <div class="filters-group">
                             <ul class="nav filter-options list-unstyled list-inline justify-content-center">
                                 <li data-group="all" class="active nav-link list-inline-item mt-2">
-                                    All</li>
-                                <li data-group="project" class="nav-link list-inline-item mt-2">
-                                    Project</li>
-                                <li data-group="design" class="nav-link list-inline-item mt-2">
-                                    Design</li>
-                                <li data-group="photography" class="nav-link list-inline-item mt-2">
-                                    Photography</li>
-                                <li data-group="development" class="nav-link list-inline-item mt-2">
-                                    Development</li>
+                                    {{ __('website.All Categories') }}</li>
+                                @foreach($campusTourCategories as $category)
+                                <li data-group="{{ $category->id }}" class="nav-link list-inline-item mt-2 mx-1">
+                                    {{ $category->{'title_'.app()->getLocale()} }}</li>
+                                @endforeach
                             </ul>
                             <!--end portfolio-list-->
                         </div>
@@ -480,158 +386,47 @@
 
             <div class="container-fluid mt-5">
                 <div class="row g-2" id="grid">
-                    <div class="col-lg-3 col-md-6  picture-item" data-groups='["photography","development"]'>
+                    @foreach($campusTours as $tour)
+                    <div class="col-lg-3 col-md-6  picture-item" data-groups='["{{ $tour->campus_tour_category_id }}"]'>
                         <div class="portfolio-box rounded">
-                            <img class="img-fluid" src="{{asset('website/images/portfolio/img-1.jpg')}}" alt="work-img" />
+                            @if($tour->type == 'video')
+                                <video class="img-fluid w-100" style="height: 250px; object-fit: cover;" controls>
+                                    <source src="{{ asset($tour->video) }}" type="video/mp4">
+                                    {{ __('website.video_not_supported') }}
+                                </video>
+                            @elseif($tour->type == 'link')
+                                @php
+                                    $link = $tour->link;
+                                    if (str_contains($link, 'youtube.com/watch?v=')) {
+                                        $link = str_replace('youtube.com/watch?v=', 'youtube.com/embed/', $link);
+                                    } elseif (str_contains($link, 'youtu.be/')) {
+                                        $link = str_replace('youtu.be/', 'youtube.com/embed/', $link);
+                                    }
+                                @endphp
+                                <iframe class="img-fluid w-100" style="height: 250px;" src="{{ $link }}" frameborder="0" allowfullscreen></iframe>
+                            @else
+                                <img class="img-fluid w-100" style="height: 250px; object-fit: cover;" src="{{ asset($tour->image) }}" onerror="this.src='{{ asset('website/images/portfolio/img-1.jpg') }}'" alt="work-img" />
+                            @endif
+
                             <div class="portfolio-content">
+                                @if($tour->type == 'image')
                                 <div class="img-view">
-                                    <a href="{{asset('website/images/portfolio/img-1.jpg')}}" class="text-muted image-popup"><i
-                                            class="mdi mdi-plus"></i></a>
+                                    <a href="{{ asset($tour->image) }}" class="text-muted image-popup">
+                                        <i class="mdi mdi-plus"></i>
+                                    </a>
                                 </div>
+                                @endif
                                 <div class="portfolio-caption">
                                     <a href="#" class="text-primary">
-                                        <h5 class="mb-1 fs-18">Motion Graphic</h5>
+                                        <h5 class="mb-1 fs-18">{{ $tour->{'title_'.app()->getLocale()} }}</h5>
                                     </a>
-                                    <p class="mb-0">Photography, Development</p>
                                 </div>
                             </div>
                         </div>
                         <!--end portfolio-box-->     
                     </div>
                     <!--end col-->
-                    <div class="col-lg-3 col-md-6  picture-item" data-groups='["photography"]'>
-                        <div class="portfolio-box rounded">
-                            <img class="img-fluid" src="{{asset('website/images/portfolio/img-2.jpg')}}" alt="work-img" />
-                            <div class="portfolio-content">
-                                <div class="img-view">
-                                    <a href="{{asset('website/images/portfolio/img-2.jpg')}}" class="text-muted image-popup"><i
-                                            class="mdi mdi-plus"></i></a>
-                                </div>
-                                <div class="portfolio-caption">
-                                    <a href="#" class="text-primary">
-                                        <h5 class="mb-1 fs-18">Creative Flyer</h5>
-                                    </a>
-                                    <p class="mb-0">Photography</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!--end portfolio-box-->
-                    </div>
-                    <!--end col-->
-                    <div class="col-lg-3 col-md-6  picture-item" data-groups='["development"]'>
-                        <div class="portfolio-box rounded">
-                            <img class="img-fluid" src="{{asset('website/images/portfolio/img-3.jpg')}}" alt="work-img" />
-                            <div class="portfolio-content">
-                                <div class="img-view">
-                                    <a href="{{asset('website/images/portfolio/img-3.jpg')}}" class="text-muted image-popup"><i
-                                            class="mdi mdi-plus"></i></a>
-                                </div>
-                                <div class="portfolio-caption">
-                                    <a href="#" class="text-primary">
-                                        <h5 class="mb-1 fs-18">Stories Collective</h5>
-                                    </a>
-                                    <p class="mb-0">Development</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!--end portfolio-box-->
-                    </div>
-                    <!--end col-->
-                    <div class="col-lg-3 col-md-6  picture-item" data-groups='["project", "design"]'>
-                        <div class="portfolio-box rounded">
-                            <img class="img-fluid" src="{{asset('website/images/portfolio/img-4.jpg')}}" alt="work-img" />
-                            <div class="portfolio-content">
-                                <div class="img-view">
-                                    <a href="{{asset('website/images/portfolio/img-4.jpg')}}" class="text-muted image-popup"><i
-                                            class="mdi mdi-plus"></i></a>
-                                </div>
-                                <div class="portfolio-caption">
-                                    <a href="#" class="text-primary">
-                                        <h5 class="mb-1 fs-18">Lightning Shot</h5>
-                                    </a>
-                                    <p class="mb-0">Project, Design</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!--end portfolio-box-->
-                    </div>
-                    <!--end col-->
-                    <div class="col-lg-3 col-md-6  picture-item" data-groups='["development","project","design"]'>
-                        <div class="portfolio-box rounded">
-                            <img class="img-fluid" src="{{asset('website/images/portfolio/img-5.jpg')}}" alt="work-img" />
-                            <div class="portfolio-content">
-                                <div class="img-view">
-                                    <a href="{{asset('website/images/portfolio/img-5.jpg')}}" class="text-muted image-popup"><i
-                                            class="mdi mdi-plus"></i></a>
-                                </div>
-                                <div class="portfolio-caption">
-                                    <a href="#" class="text-primary">
-                                        <h5 class="mb-1 fs-18">Mockup Collection</h5>
-                                    </a>
-                                    <p class="mb-0">Development, Project, Design</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!--end portfolio-box-->
-                    </div>
-                    <!--end col-->
-                    <div class="col-lg-3 col-md-6  picture-item" data-groups='["photography"]'>
-                        <div class="portfolio-box rounded">
-                            <img class="img-fluid" src="{{asset('website/images/portfolio/img-6.jpg')}}" alt="work-img" />
-                            <div class="portfolio-content">
-                                <div class="img-view">
-                                    <a href="{{asset('website/images/portfolio/img-6.jpg')}}" class="text-muted image-popup"><i
-                                            class="mdi mdi-plus"></i></a>
-                                </div>
-                                <div class="portfolio-caption">
-                                    <a href="#" class="text-primary">
-                                        <h5 class="mb-1 fs-18">Company V-card</h5>
-                                    </a>
-                                    <p class="mb-0">Photography</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!--end portfolio-box-->
-                    </div>
-                    <!--end col-->
-                    <div class="col-lg-3 col-md-6  picture-item" data-groups='["development","design"]'>
-                        <div class="portfolio-box rounded">
-                            <img class="img-fluid" src="{{asset('website/images/portfolio/img-7.jpg')}}" alt="work-img" />
-                            <div class="portfolio-content">
-                                <div class="img-view">
-                                    <a href="{{asset('website/images/portfolio/img-6.jpg')}}" class="text-muted image-popup"><i
-                                            class="mdi mdi-plus"></i></a>
-                                </div>
-                                <div class="portfolio-caption">
-                                    <a href="#" class="text-primary">
-                                        <h5 class="mb-1 fs-18">Mockup box with paints</h5>
-                                    </a>
-                                    <p class="mb-0">Development, Design</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!--end portfolio-box-->
-                    </div>
-                    <!--end col-->
-                    <div class="col-lg-3 col-md-6  picture-item" data-groups='["photography"]'>
-                        <div class="portfolio-box rounded">
-                            <img class="img-fluid" src="{{asset('website/images/portfolio/img-8.jpg')}}" alt="work-img" />
-                            <div class="portfolio-content">
-                                <div class="img-view">
-                                    <a href="{{asset('website/images/portfolio/img-6.jpg')}}" class="text-muted image-popup"><i
-                                            class="mdi mdi-plus"></i></a>
-                                </div>
-                                <div class="portfolio-caption">
-                                    <a href="#" class="text-primary">
-                                        <h5 class="mb-1 fs-18">Pen and article</h5>
-                                    </a>
-                                    <p class="mb-0">Photography</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!--end portfolio-box-->
-                    </div>
-                    <!--end col-->
+                    @endforeach
                 </div><!--end row-->
             </div><!--end container-fluid-->
         </section>
@@ -643,11 +438,10 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-10">
                         <div class="header-title text-center">
-                            <h2>Become a part of zoric bussiness community today</h2>
-                            <p class="title-desc text-muted mt-3"> Start working with zoric that can provide everything you
-                                need to generate awareness, drive traffic, connect. </p>
+                            <h2>{{ __('website.cta_title') }}</h2>
+                            <p class="title-desc text-muted mt-3"> {{ __('website.cta_desc') }} </p>
                             <div class="mt-4">
-                                <a href="#" class="btn btn-primary mt-2">Get Started</a>
+                                <a href="#" class="btn btn-primary mt-2">{{ __('website.get_started') }}</a>
                             </div>
                         </div>
 

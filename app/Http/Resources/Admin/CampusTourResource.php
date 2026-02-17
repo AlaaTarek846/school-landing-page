@@ -19,9 +19,9 @@ class CampusTourResource extends JsonResource
         $content = $this->link;
         
         if ($type === 'image') {
-            $content = $this->image ? \Illuminate\Support\Facades\Storage::url($this->image) : null;
+            $content = $this->image ? $this->image : null;
         } elseif ($type === 'video') {
-             $content = $this->video ? \Illuminate\Support\Facades\Storage::url($this->video) : null;
+             $content = $this->video ? $this->video : null;
         }
 
         return [
@@ -32,8 +32,8 @@ class CampusTourResource extends JsonResource
             'description_en' => $this->description_en,
             'type' => $this->type, // Changed from $type to $this->type based on edit
             'content' => $content,
-            'image' => $this->image ? \Illuminate\Support\Facades\Storage::url($this->image) : null,
-            'video' => $this->video ? \Illuminate\Support\Facades\Storage::url($this->video) : null,
+            'image' => $this->image ? $this->image : null,
+            'video' => $this->video ? $this->video : null,
             'link' => $this->link,
             'campus_tour_category_id' => $this->campus_tour_category_id,
             'campus_tour_category' => new CampusTourCategoryResource($this->whenLoaded('category')),
