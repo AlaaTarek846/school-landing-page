@@ -65,6 +65,13 @@
     </li>
 
     <li class="slide">
+        <a href="{{ route('admin.page.campus-tour-categories') }}" class="side-menu__item">
+            <i class="ri-list-check-2 side-menu__icon"></i>
+            <span class="side-menu__label">{{ __('global.CampusTourCategories') }}</span>
+        </a>
+    </li>
+
+    <li class="slide">
         <a href="{{ route('admin.page.campus-tours') }}"
            class="side-menu__item {{ request()->routeIs('admin.page.campus-tours') ? 'active' : '' }}">
             <i class="bi bi-camera-video side-menu__icon"></i>
@@ -88,27 +95,6 @@
         </a>
     </li>
 
-    <li class="slide">
-        <a href="{{ route('admin.page.facility-details') }}"
-           class="side-menu__item {{ request()->routeIs('admin.page.facility-details') ? 'active' : '' }}">
-            <i class="bi bi-info-circle side-menu__icon"></i>
-            <span class="side-menu__label">{{ __('global.FacilityDetails') }}</span>
-        </a>
-    </li>
-    <!-- End::School Modules -->
-
-    <li class="slide">
-        <a href="{{ route('admin.page.campus-tour-categories') }}" class="side-menu__item">
-            <i class="ri-list-check-2 side-menu__icon"></i>
-            <span class="side-menu__label">{{ __('global.CampusTourCategories') }}</span>
-        </a>
-    </li>
-    <li class="slide">
-        <a href="{{ route('admin.page.campus-tours') }}" class="side-menu__item">
-            <i class="ri-building-line side-menu__icon"></i>
-            <span class="side-menu__label">{{ __('global.CampusTours') }}</span>
-        </a>
-    </li>
 
     <!-- Start::about -->
         <li class="slide">
@@ -151,12 +137,6 @@
                 </a>
             </li>
 
-            <li class="slide">
-                <a href="{{ route('admin.page.faq') }}"
-                   class="side-menu__item {{ request()->routeIs('admin.page.faq') ? 'active' : '' }}">
-                    الأسئلة الشائعة
-                </a>
-            </li>
 
             <li class="slide">
                 <a href="{{ route('admin.page.contact-messages') }}"
@@ -165,12 +145,6 @@
                 </a>
             </li>
 
-            <li class="slide">
-                <a href="{{ route('admin.page.subscribes') }}"
-                   class="side-menu__item {{ request()->routeIs('admin.page.subscribes') ? 'active' : '' }}">
-                    المشتركين
-                </a>
-            </li>
 
         </ul>
     </li>

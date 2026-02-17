@@ -15,14 +15,13 @@ class CampusTourResource extends JsonResource
     public function toArray(Request $request): array
     {
         // Determine type based on fields
-        $type = 'link';
+        $type = $this->type;
         $content = $this->link;
-        if ($this->image) {
-            $type = 'image';
-            $content = \Illuminate\Support\Facades\Storage::url($this->image);
-        } elseif ($this->video) {
-            $type = 'video';
-            $content = \Illuminate\Support\Facades\Storage::url($this->video); 
+        
+        if ($type === 'image') {
+            $content = $this->image ? \Illuminate\Support\Facades\Storage::url($this->image) : null;
+        } elseif ($type === 'video') {
+             $content = $this->video ? \Illuminate\Support\Facades\Storage::url($this->video) : null;
         }
 
         return [

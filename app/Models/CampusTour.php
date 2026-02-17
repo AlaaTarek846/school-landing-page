@@ -15,6 +15,7 @@ class CampusTour extends Model
         'image',
         'video',
         'link',
+        'type',
         'campus_tour_category_id',
     ];
 

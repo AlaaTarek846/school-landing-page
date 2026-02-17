@@ -58,10 +58,13 @@ class CampusTourSeeder extends Seeder
 
             if ($item['type'] === 'image') {
                 $data['image'] = $item['value'];
+                $data['type'] = 'image';
             } elseif ($item['type'] === 'video') {
                 $data['video'] = $item['value'];
+                $data['type'] = 'video';
             } elseif ($item['type'] === 'link') {
                 $data['link'] = $item['value'];
+                $data['type'] = 'link';
             }
 
             CampusTour::create($data);
