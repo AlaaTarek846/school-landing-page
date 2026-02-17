@@ -16,15 +16,10 @@ class CampusTourSeeder extends Seeder
         CampusTour::query()->delete();
         \Illuminate\Support\Facades\Schema::enableForeignKeyConstraints();
 
-        // Ensure we have categories
         $categories = \App\Models\CampusTourCategory::pluck('id')->toArray();
+
         if (empty($categories)) {
-            // Fallback if no categories exist, though they should if Seeders run in order
-            $category = \App\Models\CampusTourCategory::create([
-                'title_ar' => 'عام',
-                'title_en' => 'General',
-            ]);
-            $categories = [$category->id];
+            return;
         }
 
         $items = [

@@ -15,7 +15,6 @@ return [
     "back" => "Back",
     "properties" => "Properties",
     "showProperty" => "Show property",
-    "district" => "Districts",
     "owner" => "Owners",
     "unit_number" => "Unit Number",
     "showOwner" => "Show Owner",

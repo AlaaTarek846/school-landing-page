@@ -18,20 +18,22 @@
                   <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">{{ $t('global.TitleAr') }}</th>
-                    <th scope="col">{{ $t('global.TitleEn') }}</th>
-                    <th scope="col">{{ $t('global.description') }} (AR)</th>
-                    <th scope="col">{{ $t('global.description') }} (EN)</th>
+                    <th scope="col">{{ $t('global.Image') }}</th>
+                    <th scope="col">{{ $t('global.Title') }}</th>
                     <th scope="col">{{ $t('global.action') }}</th>
                   </tr>
                   </thead>
                   <tbody v-if="data && data.length">
                   <tr v-for="(item,index) in data" :key="item.id">
                     <td scope="row">{{index + 1}}</td>
+                    <td>
+                      <div class="me-3">
+                        <span class="avatar avatar-xxl bg-light">
+                            <img :src="item.image" alt="" style="width: 100%; height: 100%">
+                        </span>
+                      </div>
+                    </td>
                     <td>{{item.title_ar}}</td>
-                    <td>{{item.title_en}}</td>
-                    <td>{{item.description_ar}}</td>
-                    <td>{{item.description_en}}</td>
                     <td>
                       <div class="hstack gap-2 fs-15">
                         <button

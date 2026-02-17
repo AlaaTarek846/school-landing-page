@@ -35,15 +35,10 @@
                           </error-message>
                         </template>
                       </div>
-                      <div class="col-md-6 mt-3" v-for="lang in languages">
+                      <div class="col-md-12 mt-3" v-for="lang in languages">
                         <label class="form-label">{{ $t('label.description') }} ({{ lang == 'ar' ? 'عربي' : 'English' }})</label>
-                        <textarea
-                            class="form-control summernote"
-                            rows="4"
-                            v-model.trim="v$[`description_${lang}`].$model"
-                            :class="{'is-invalid': v$[`description_${lang}`].$error ||errors[`description_${lang}`],
-                                    'is-valid':!v$[`description_${lang}`].$invalid && !errors[`description_${lang}`]}">
-                            </textarea>
+                          <Editor ref="descRef" :modules="customModules" v-model="v$[`description_${lang}`].$model"></Editor>
+
                         <template v-if="errors[`description_${lang}`]">
                           <error-message v-for="(errorMessage, index) in errors[`description_${lang}`]" :key="index">
                             {{ errorMessage }}
@@ -125,6 +120,31 @@
   import useVuelidate from "@vuelidate/core";
   import adminApi from "../../../api/adminAxios";
   import {useStore} from "vuex";
+  import Editor from 'primevue/editor';
+
+  const components = { Editor };
+  const customModules = ref({
+    toolbar: [
+      ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+      ['blockquote', 'code-block'],
+
+      [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+      [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+      [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+      [{ 'direction': 'rtl' }],                        // text direction
+
+      [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+      [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults
+      [{ 'font': [] }],
+      [{ 'align': [] }],
+
+      ['clean']                                         // remove formatting button
+    ],
+    theme: 'bubble',
+  })
 
   const props = defineProps({
       type: {default: 'create'},
@@ -195,7 +215,7 @@
       } else {
         id.value = props.dataRow.id;
 
-        adminApi.get(`one-abouts/${id.value}`)
+        adminApi.get(`one-about/${id.value}`)
             .then((res) => {
               loading.value = true;
               let l = res.data.data;
@@ -249,8 +269,8 @@
       title_color_ar: {minLength: minLength(0),maxLength:maxLength(100)}, // Removed required
       title_en: {minLength: minLength(1),maxLength:maxLength(100),required,},
       title_color_en: {minLength: minLength(0),maxLength:maxLength(100)}, // Removed required
-      description_ar: {minLength: minLength(1),maxLength:maxLength(200),required,},
-      description_en: {minLength: minLength(1),maxLength:maxLength(200),required,},
+      description_ar: {minLength: minLength(1),required,},
+      description_en: {minLength: minLength(1),required,},
       details: {}, // Removed validations
       first_photo: {required: requiredIf( (value) => {
           return props.type == 'create' || !imageUpload.value;
@@ -286,7 +306,7 @@
         if (!v$.value.$error) {
           is_disabled.value = false;
           loading.value = true;
-          adminApi.post(`one-abouts`, formData)
+          adminApi.post(`one-about`, formData)
               .then((res) => {
                 Swal.fire({
                   icon: 'success',
@@ -308,7 +328,7 @@
         is_disabled.value = false;
         loading.value = true;
         formData.append('_method','PUT');
-        adminApi.post(`one-abouts/${id.value}`,formData)
+        adminApi.post(`one-about/${id.value}`,formData)
             .then((res) => {
               Swal.fire({
                 icon: 'success',

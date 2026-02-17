@@ -20,7 +20,7 @@ class CampusTourController extends Controller
 
     public function index(Request $request)
     {
-        $items = CampusTour::latest()->paginate(10);
+        $items = CampusTour::with('category')->latest()->paginate(10);
         return responseJson(CampusTourResource::collection($items->items()), '', 200, getPaginates($items));
     }
 

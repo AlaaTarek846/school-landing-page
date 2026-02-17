@@ -11,15 +11,15 @@
 
     <!-- Start::about -->
     <li class="slide">
+    <!-- Start::about -->
+    <li class="slide">
         <a href="{{ route('admin.page.home-sliders') }}"
            class="side-menu__item {{ request()->routeIs('admin.page.home-sliders') ? 'active' : '' }}">
             <i class="bi bi-map side-menu__icon"></i>
             <span class="side-menu__label">السكشن المتحرك</span>
         </a>
     </li>
-    <!-- End::about -->
 
-    <!-- Start::about -->
     <li class="slide">
         <a href="{{ route('admin.page.testimonial') }}"
            class="side-menu__item {{ request()->routeIs('admin.page.testimonial') ? 'active' : '' }}">
@@ -27,7 +27,6 @@
             <span class="side-menu__label">اراء العملاء</span>
         </a>
     </li>
-    <!-- End::about -->
 
     <!-- Start::about -->
     <li class="slide">
@@ -37,7 +36,6 @@
             <span class="side-menu__label">اعضاء الشركة</span>
         </a>
     </li>
-    <!-- End::about -->
 
     <!-- Start::School Modules -->
     <li class="slide">
@@ -108,16 +106,15 @@
 
 
     
-    <li
-            class="slide has-sub {{ request()->routeIs('admin.page.setting') || request()->routeIs('admin.page.policies') || request()->routeIs('admin.page.faq') || request()->routeIs('admin.page.subscribes') || request()->routeIs('admin.page.contact-messages') ? 'active open' : '' }}">
-        <a href="javascript:void(0);"
-           class="side-menu__item {{ request()->routeIs('admin.page.setting') || request()->routeIs('admin.page.policies') || request()->routeIs('admin.page.faq') || request()->routeIs('admin.page.subscribes')|| request()->routeIs('admin.page.contact-messages') ? 'active' : '' }}">
-            <i class="bi bi-map side-menu__icon"></i>
-            <span class="side-menu__label"> الاعدادات</span>
-            <i class="fe fe-chevron-right side-menu__angle"></i>
 
+
+    <!-- Start::Settings -->
+    <li class="slide has-sub {{ request()->routeIs('admin.page.setting') || request()->routeIs('admin.page.policies') || request()->routeIs('admin.page.contact-messages') || request()->routeIs('admin.page.one-about') ? 'active open' : '' }}" >
+        <a href="javascript:void(0);"  class="side-menu__item {{ request()->routeIs('admin.page.setting') || request()->routeIs('admin.page.policies') || request()->routeIs('admin.page.contact-messages') || request()->routeIs('admin.page.one-about') ? 'active' : '' }}">
+            <i class="bi bi-gear side-menu__icon"></i>
+            <span class="side-menu__label">الاعدادات</span>
+            <i class="fe fe-chevron-down side-menu__angle"></i>
         </a>
-
         <ul class="slide-menu child1">
             <li class="slide side-menu__label1">
                 <a href="javascript:void(0)"> الاعدادات</a>

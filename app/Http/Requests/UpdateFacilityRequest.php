@@ -25,7 +25,6 @@ class UpdateFacilityRequest extends FormRequest
             'title_ar' => 'required|string|max:255',
             'title_en' => 'required|string|max:255',
             'description_ar' => 'required|string',
-            'description_ar' => 'required|string',
             'description_en' => 'required|string',
             'image' => 'nullable|image',
             'details' => 'nullable|array',

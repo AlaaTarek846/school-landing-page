@@ -50,6 +50,28 @@
                         </div>
                       </div>
 
+                      <!-- Description AR -->
+                      <div class="col-md-6 mb-2">
+                        <label class="form-label">الوصف (عربي)</label>
+                        <textarea class="form-control form-control-lg" v-model="v$.description_ar.$model"
+                                  :class="{'is-invalid': v$.description_ar.$error || errors[`description_ar`],
+                                        'is-valid': !v$[`description_ar`].$invalid && !errors[`description_ar`]}"></textarea>
+                        <div class="invalid-feedback" v-if="v$.description_ar.$error">
+                             {{ $t('validation.fieldRequired') }}
+                        </div>
+                      </div>
+
+                      <!-- Description EN -->
+                      <div class="col-md-6 mb-2">
+                        <label class="form-label">الوصف (English)</label>
+                        <textarea class="form-control form-control-lg" v-model="v$.description_en.$model"
+                                  :class="{'is-invalid': v$.description_en.$error || errors[`description_en`],
+                                        'is-valid': !v$[`description_en`].$invalid && !errors[`description_en`]}"></textarea>
+                         <div class="invalid-feedback" v-if="v$.description_en.$error">
+                             {{ $t('validation.fieldRequired') }}
+                        </div>
+                      </div>
+
                       <!-- Type Selector -->
                       <div class="col-md-12 mb-3">
                           <label class="form-label">{{ $t('global.Type') }}</label>
@@ -82,7 +104,7 @@
                             <div class="col-12 text-end">
                               <button
                                   type="button" class="btn btn-danger btn-sm"
-                                  @click="imageUpload = ''; submitData.data.image = '';"
+                                  @click="imageUpload = ''; submitData.data.image = ''; let i = document.querySelector('#container-images'); if(i) i.innerHTML = '';"
                                   v-if="imageUpload"
                               >
                                 {{ $t('global.deleteImage') }}
@@ -91,14 +113,18 @@
                             <div class="col-md-12 mt-3 d-flex flex-wrap flex-fill h-100">
                               <div class="btn btn-outline-light waves-effect" style="width: 100%; height:90%">
 
-                                    <span v-if="!imageUpload" style="margin-top:35%;">
+                                    <span v-if="!imageUpload && !submitData.data.image" style="margin-top:35%;">
                                         <br><i class="bi bi-cloud-upload fs-40" style="font-size: 85px;"></i>
+                                        <i class="fas fa-cloud-upload-alt ml-3" aria-hidden="true"></i>
                                     </span>
 
                                 <input name="mediaPackageUpload" type="file" @change="preview"
+                                       class="hidden-upload-input"
                                        id="photoPersonal1" accept="image/*">
 
-                                <div v-if="imageUpload" class="row justify-content-center h-100">
+                                <div id="container-images" class="row justify-content-center h-100"></div>
+
+                                <div v-if="imageUpload && !submitData.data.image" class="row justify-content-center h-100">
                                    <figure class="col-3">
                                     <img :src="imageUpload.url ? imageUpload.url : imageUpload" class="img-fluid rounded h-100 w-100 m-1" />
                                   </figure>
@@ -111,7 +137,12 @@
                          <!-- Video Upload -->
                         <div class="col-md-12 mt-3" v-if="submitData.data.type === 'video'">
                           <label class="form-label">فيديو (اجباري)</label>
-                          <input type="file" class="form-control" @change="handleVideoUpload" accept="video/mp4,video/x-m4v,video/*">
+                          <input type="file" class="form-control" 
+                                 :class="{'is-invalid': v$.video?.$error}"
+                                 @change="handleVideoUpload" accept="video/mp4,video/x-m4v,video/*">
+                           <div class="invalid-feedback" v-if="v$.video?.$error">
+                                 {{ $t('validation.fieldRequired') }}
+                           </div>
                            <div v-if="videoPreview" class="mt-2">
                                 <video width="320" height="240" controls :src="videoPreview"></video>
                                 <button type="button" class="btn btn-danger btn-sm d-block mt-1" @click="clearVideo">Remove Video</button>
@@ -197,6 +228,8 @@
   function defaultData(){
     submitData.data.title_ar = '';
     submitData.data.title_en = '';
+    submitData.data.description_ar = ''; // Added
+    submitData.data.description_en = ''; // Added
     submitData.data.image = '';
     submitData.data.link = '';
     submitData.data.type = 'image';
@@ -208,6 +241,8 @@
     imageUpload.value = '';
     videoPreview.value = '';
     videoFile.value = null;
+    let i = document.querySelector('#container-images');
+    if(i) { i.innerHTML = ''; }
   }
 
   function resetModal() {
@@ -223,6 +258,8 @@
               let l = res.data.data;
               submitData.data.title_ar = l.title_ar;
               submitData.data.title_en = l.title_en;
+              submitData.data.description_ar = l.description_ar; // Added
+              submitData.data.description_en = l.description_en; // Added
               submitData.data.link = l.link; 
               submitData.data.type = l.type || 'image';
               submitData.data.campus_tour_category_id = l.campus_tour_category_id;
@@ -250,8 +287,11 @@
     data:{
       title_ar: '',
       title_en: '',
+      description_ar: '', // Added
+      description_en: '', // Added
       image: '',
       link: '',
+      video: '', 
       type: 'image',
       campus_tour_category_id: ''
     }
@@ -261,8 +301,17 @@
     return {
       title_ar: {required},
       title_en: {required},
+      description_ar: {required}, // Added
+      description_en: {required}, // Added
       campus_tour_category_id: {required},
-      link: { required: requiredIf(() => submitData.data.type === 'link') } 
+      link: { required: requiredIf(() => submitData.data.type === 'link') },
+      image: { required: requiredIf(() => {
+          return submitData.data.type === 'image' && (!imageUpload.value);
+      })}, 
+      video: { required: requiredIf(() => {
+           // If type is video, require it if no video file selected AND no existing video preview (for edit)
+           return submitData.data.type === 'video' && (!videoFile.value && !videoPreview.value);
+      })}
     }
   });
 
@@ -275,6 +324,8 @@
       let formData = new FormData();
       formData.append('title_ar', submitData.data.title_ar);
       formData.append('title_en', submitData.data.title_en);
+      formData.append('description_ar', submitData.data.description_ar); // Added
+      formData.append('description_en', submitData.data.description_en); // Added
       formData.append('type', submitData.data.type);
       formData.append('campus_tour_category_id', submitData.data.campus_tour_category_id);
       
@@ -336,12 +387,24 @@
 }
 
   const preview = (e) => {
+    let containerImages = document.querySelector("#container-images");
+    if(containerImages) containerImages.innerHTML = "";
+
     if(e && e.target.files[0]) {
       submitData.data.image = e.target.files[0];
+      imageUpload.value = ''; // Reset existing image view
+      
       let reader = new FileReader();
+      let figure = document.createElement('figure');
+      figure.className = 'col-3';
+
       reader.onload = () => {
-          imageUpload.value = reader.result;
+          let img = document.createElement('img');
+          img.className = 'img-fluid rounded h-100 w-100 m-1';
+          img.setAttribute('src', reader.result);
+          figure.appendChild(img);
       }
+      containerImages.appendChild(figure);
       reader.readAsDataURL(submitData.data.image);
     }
   };
@@ -362,6 +425,38 @@
 </script>
 
 <style scoped>
+.ml-3 {
+  margin-left: 1.5rem;
+}
+
+.waves-effect {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  width: 200px;
+  height: 50px;
+  text-align: center;
+  line-height: 34px;
+  margin: auto;
+}
+
+.hidden-upload-input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  filter: alpha(opacity=0);
+  opacity: 0;
+}
+
 .waves-effect {
   background-color: #e9e9e9;
 }

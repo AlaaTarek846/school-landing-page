@@ -18,8 +18,9 @@
                   <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">المحتوي</th>
-                    <th scope="col">العنوان</th>
+                    <th scope="col">{{ $t('global.Image') }}</th>
+                    <th scope="col">{{ $t('global.Title') }}</th>
+                    <th scope="col">{{ $t('global.CampusTourCategories') }}</th>
                     <th scope="col">{{ $t('global.action') }}</th>
                   </tr>
                   </thead>
@@ -41,6 +42,7 @@
                       </div>
                     </td>
                     <td>{{item.title_ar}}</td>
+                    <td>{{item.campus_tour_category?.title_ar}}</td>
                     <td>
                       <div class="hstack gap-2 fs-15">
                         <button

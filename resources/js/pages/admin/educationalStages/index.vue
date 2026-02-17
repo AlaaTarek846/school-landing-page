@@ -18,7 +18,9 @@
                   <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">العنوان</th>
+                    <th scope="col">{{ $t('global.Title') }}</th>
+                    <th scope="col">{{ $t('global.ClassesCount') }}</th>
+                    <th scope="col">{{ $t('global.StudentRegistrationsCount') }}</th>
                     <th scope="col">{{ $t('global.action') }}</th>
                   </tr>
                   </thead>
@@ -26,6 +28,8 @@
                   <tr v-for="(item,index) in data" :key="item.id">
                     <td scope="row">{{index + 1}}</td>
                     <td>{{item.title_ar}}</td>
+                    <td>{{item.classes_count}}</td>
+                    <td>{{item.student_registrations_count}}</td>
                     <td>
                       <div class="hstack gap-2 fs-15">
                         <button

@@ -47,10 +47,10 @@
                   <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">اسم الطالب</th>
-                    <th scope="col">المرحلة الدراسية</th>
-                    <th scope="col">الصف الدراسي</th>
-                    <th scope="col">الملف</th>
+                    <th scope="col">{{ $t('global.StudentName') }}</th>
+                    <th scope="col">{{ $t('global.EducationalStage') }}</th>
+                    <th scope="col">{{ $t('global.ClassRoom') }}</th>
+                    <th scope="col">{{ $t('global.File') }}</th>
                     <th scope="col">{{ $t('global.date') }}</th>
                     <th scope="col">{{ $t('global.action') }}</th>
                   </tr>

@@ -20,7 +20,9 @@ class EducationalStageResource extends JsonResource
             'title_en' => $this->title_en,
             'description_ar' => $this->description_ar,
             'description_en' => $this->description_en,
-            'created_at' => $this->created_at->format('Y-m-d H:i:s'),
+            'classes_count' => $this->classes()->count(),
+            'student_registrations_count' => $this->studentRegistrations()->count(),
+            'created_at' => $this->created_at->format('Y-m-d'),
         ];
     }
 }

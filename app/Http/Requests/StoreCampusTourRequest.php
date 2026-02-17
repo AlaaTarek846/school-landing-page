@@ -24,10 +24,12 @@ class StoreCampusTourRequest extends FormRequest
         return [
             'title_ar' => 'required|string|max:255',
             'title_en' => 'required|string|max:255',
+            'description_ar' => 'required|string',
+            'description_en' => 'required|string',
             'type' => 'required|in:image,video,link',
-            'image' => 'nullable|required_if:type,image|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'video' => 'nullable|required_if:type,video',
-            'link' => 'nullable|required_if:type,link|url',
+            'image' => 'required_if:type,image|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'video' => 'required_if:type,video',
+            'link' => 'required_if:type,link|url',
             'campus_tour_category_id' => 'required|exists:campus_tour_categories,id',
         ];
     }

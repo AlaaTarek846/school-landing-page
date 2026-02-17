@@ -44,7 +44,7 @@ class FacilityController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
         $facility = \App\Models\Facility::with('details')->find($id);
         if (!$facility) {
@@ -56,7 +56,7 @@ class FacilityController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(\App\Http\Requests\UpdateFacilityRequest $request, string $id)
+    public function update(\App\Http\Requests\UpdateFacilityRequest $request, $id)
     {
         $facility = \App\Models\Facility::find($id);
         if (!$facility) {
@@ -86,7 +86,7 @@ class FacilityController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         $facility = \App\Models\Facility::find($id);
         if (!$facility) {

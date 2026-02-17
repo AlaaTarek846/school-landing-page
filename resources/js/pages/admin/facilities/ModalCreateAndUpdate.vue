@@ -95,9 +95,9 @@
                     <div class="row">
                         <div class="col-md-12 mb-2 d-flex justify-content-between align-items-center">
                             <h6>{{ $t('global.FacilityDetails') }}</h6>
-                            <button type="button" class="btn btn-sm btn-success" @click.prevent="addDetail">
-                                <i class="ri-add-line"></i> {{ $t('global.add') }}
-                            </button>
+<!--                            <button type="button" class="btn btn-sm btn-success" @click.prevent="addDetail">-->
+<!--                                <i class="ri-add-line"></i> {{ $t('global.add') }}-->
+<!--                            </button>-->
                         </div>
 
                         <div class="col-md-12" v-for="(detail, index) in submitData.data.details" :key="index">

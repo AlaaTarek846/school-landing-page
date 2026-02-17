@@ -54,6 +54,10 @@ class ClassRoomController extends Controller
         if (!$item) {
             return responseJson(null, 'Not Found', 404);
         }
+        if ($item->studentRegistrations()->count() > 0) {
+            return responseJson(null, __('website.Cannot delete this class because it has related student registrations'), 422);
+        }
+
         $item->delete();
         return responseJson([], 'Deleted Successfully', 200);
     }

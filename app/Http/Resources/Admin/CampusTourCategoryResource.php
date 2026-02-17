@@ -18,6 +18,7 @@ class CampusTourCategoryResource extends JsonResource
             'id' => $this->id,
             'title_ar' => $this->title_ar,
             'title_en' => $this->title_en,
+            'campus_tours_count' => $this->campusTours()->count(),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
         ];
     }

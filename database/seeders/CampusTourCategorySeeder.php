@@ -12,6 +12,9 @@ class CampusTourCategorySeeder extends Seeder
      */
     public function run(): void
     {
+        \Illuminate\Support\Facades\Schema::disableForeignKeyConstraints();
+        CampusTourCategory::truncate();
+        \Illuminate\Support\Facades\Schema::enableForeignKeyConstraints();
         $categories = [
             [
                 'title_ar' => 'الفصول الدراسية',

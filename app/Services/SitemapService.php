@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\Article;
+
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
@@ -13,36 +13,12 @@ class SitemapService
      */
     public function generateSitemap(): string
     {
-        $articles = Article::where('status', 1)
-            ->with(['media', 'category'])
-            ->orderBy('updated_at', 'desc')
-            ->get();
-
         $xml = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
         $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"';
         $xml .= ' xmlns:xhtml="http://www.w3.org/1999/xhtml">' . "\n";
 
         // Add homepage
         $xml .= $this->generateUrlTag(url('/'), now(), 'daily', 1.0, []);
-
-        // Add articles
-        foreach ($articles as $article) {
-            $alternates = [];
-            
-            // Arabic URL
-            if ($article->slug_ar) {
-                $arUrl = url('/articles/blog-details/' . $article->slug_ar);
-                $alternates['ar'] = $arUrl;
-                $xml .= $this->generateUrlTag($arUrl, $article->updated_at, 'weekly', 0.8, $alternates);
-            }
-            
-            // English URL
-            if ($article->slug_en) {
-                $enUrl = url('/articles/blog-details/' . $article->slug_en);
-                $alternates['en'] = $enUrl;
-                $xml .= $this->generateUrlTag($enUrl, $article->updated_at, 'weekly', 0.8, $alternates);
-            }
-        }
 
         $xml .= '</urlset>';
 
