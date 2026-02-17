@@ -4,17 +4,15 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('counter_about', function (Blueprint $table) {
-            $table->id();
-            $table->string('count');
-            $table->string('icon');
-            $table->timestamps();
+        Schema::table('campus_tours', function (Blueprint $table) {
+            //
         });
     }
 
@@ -23,6 +21,8 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('counter_about');
+        Schema::table('campus_tours', function (Blueprint $table) {
+            //
+        });
     }
 };

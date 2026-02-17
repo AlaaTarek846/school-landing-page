@@ -33,29 +33,43 @@ class OneAboutController extends Controller
     public function show($id)
     {
         $oneAbout = OneAbout::with(['details','firstPhoto'])->find($id);
+        if (!$oneAbout) {
+            return responseJson(null, 'Not Found', 404);
+        }
         return responseJson($oneAbout,'Data exited successfully',200);
     }
 
-    public function update(OneAboutRequest $request, OneAbout $oneAbout)
+    public function update(OneAboutRequest $request, $id)
     {
+        $oneAbout = OneAbout::find($id);
+        if (!$oneAbout) {
+            return responseJson(null, 'Not Found', 404);
+        }
+
         $data = $request->validated();
         if(isset($data['first_photo'])) {
             saveFiles($data['first_photo'], $oneAbout, 'oneAbout', "first_photo",'update');
         }
 
         $oneAbout->update(Arr::except($data,['details','first_photo']));
-        foreach ($oneAbout->details() as $detail) {
-            $detail->delete();
-        }
+        
         $oneAbout->details()->delete();
-        foreach ($data['details'] as $detail) {
-            $d = AboutDetail::create(array_merge(['one_about_id' => $oneAbout->id],$detail));
+        if(isset($data['details'])) {
+             foreach ($data['details'] as $detail) {
+                AboutDetail::create(array_merge(['one_about_id' => $oneAbout->id],$detail));
+            }
         }
+       
         return responseJson([],'Updated Successfully',200);
     }
 
-    public function destroy(OneAbout $oneAbout)
+    public function destroy($id)
     {
+        $oneAbout = OneAbout::find($id);
+        if (!$oneAbout) {
+            return responseJson(null, 'Not Found', 404);
+        }
+
         deleteFile($oneAbout);
         $oneAbout->delete();
         return responseJson([],'Deleted Successfully',200);

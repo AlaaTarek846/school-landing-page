@@ -28,12 +28,15 @@ class CampusTourResource extends JsonResource
             'id' => $this->id,
             'title_ar' => $this->title_ar,
             'title_en' => $this->title_en,
-            'type' => $type,
+            'description_ar' => $this->description_ar,
+            'description_en' => $this->description_en,
+            'type' => $this->type, // Changed from $type to $this->type based on edit
             'content' => $content,
             'image' => $this->image ? \Illuminate\Support\Facades\Storage::url($this->image) : null,
             'video' => $this->video ? \Illuminate\Support\Facades\Storage::url($this->video) : null,
             'link' => $this->link,
             'campus_tour_category_id' => $this->campus_tour_category_id,
+            'campus_tour_category' => new CampusTourCategoryResource($this->whenLoaded('category')),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
         ];
     }

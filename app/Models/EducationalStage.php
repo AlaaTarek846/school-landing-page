@@ -28,6 +28,11 @@ class EducationalStage extends Model
         return $this->hasMany(ClassRoom::class, 'educational_stage_id');
     }
 
+    public function studentRegistrations()
+    {
+        return $this->hasMany(StudentRegistration::class, 'educational_stage_id');
+    }
+
     public function getTitleAttribute($value)
     {
         return app()->getLocale() === 'ar' ? $this->title_ar : $this->title_en;

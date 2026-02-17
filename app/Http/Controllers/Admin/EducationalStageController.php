@@ -59,6 +59,14 @@ class EducationalStageController extends Controller
             return responseJson(null, 'Not Found', 404);
         }
 
+        if ($item->classes()->count() > 0) {
+            return responseJson(null, __('website.Cannot delete this stage because it has related classes'), 422);
+        }
+
+        if ($item->studentRegistrations()->count() > 0) {
+            return responseJson(null, __('website.Cannot delete this stage because it has related student registrations'), 422);
+        }
+
         $item->delete();
         return responseJson([], 'Deleted Successfully', 200);
     }

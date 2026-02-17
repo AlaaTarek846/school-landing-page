@@ -195,7 +195,7 @@
       } else {
         id.value = props.dataRow.id;
 
-        adminApi.get(`one-abouts/${id.value}`)
+        adminApi.get(`one-about/${id.value}`)
             .then((res) => {
               loading.value = true;
               let l = res.data.data;
@@ -286,7 +286,7 @@
         if (!v$.value.$error) {
           is_disabled.value = false;
           loading.value = true;
-          adminApi.post(`one-abouts`, formData)
+          adminApi.post(`one-about`, formData)
               .then((res) => {
                 Swal.fire({
                   icon: 'success',
@@ -308,7 +308,7 @@
         is_disabled.value = false;
         loading.value = true;
         formData.append('_method','PUT');
-        adminApi.post(`one-abouts/${id.value}`,formData)
+        adminApi.post(`one-about/${id.value}`,formData)
             .then((res) => {
               Swal.fire({
                 icon: 'success',

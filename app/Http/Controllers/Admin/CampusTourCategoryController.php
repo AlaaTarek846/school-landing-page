@@ -58,6 +58,10 @@ class CampusTourCategoryController extends Controller
             return responseJson(null, 'Not Found', 404);
         }
 
+        if ($item->campusTours()->count() > 0) {
+            return responseJson(null, __('website.Cannot delete this category because it has related campus tours'), 422);
+        }
+
         $item->delete();
         return responseJson([], 'Deleted Successfully', 200);
     }

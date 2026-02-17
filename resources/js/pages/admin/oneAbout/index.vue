@@ -108,7 +108,7 @@ export default {
       ]
     }
     onMounted(() => {
-        uri.value = 'one-abouts';
+        uri.value = 'one-about';
         getData();
         step.value = 1;
     });

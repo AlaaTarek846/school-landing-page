@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Client\ContactMessageRequest;
 use App\Models\ContactMessage;
-use App\Models\Partner;
-use App\Models\Service;
+
 use App\Models\Setting;
 use Illuminate\Http\Request;
 
@@ -20,9 +19,7 @@ class DonateController extends Controller
     public function index()
     {
         $setting = Setting::first();
-        $partners = Partner::whereStatus(1)->get();
-        $services = Service::with('icon','image')->whereStatus(1)->orderBy('sort','asc')->get();
-        return view('website.donate',compact('partners','setting','services'));
+        return view('website.donate',compact('setting'));
     }
 
      public function store(ContactMessageRequest $request)

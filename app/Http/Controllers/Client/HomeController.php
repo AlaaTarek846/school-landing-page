@@ -3,13 +3,10 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
-use App\Models\Article;
 use App\Models\CampusTour;
 use App\Models\EducationalStage;
 use App\Models\HomeSlider;
-use App\Models\Project;
-use App\Models\PropertyType;
-use App\Models\Service;
+
 use App\Models\Setting;
 use App\Models\Team;
 use App\Models\Testimonial;
@@ -26,8 +23,6 @@ class HomeController extends Controller
     public function index()
     {
         $homeSlider = HomeSlider::first();
-        $services = Service::whereStatus(1)->take(4)->get();
-        $propertyTypes = PropertyType::get();
 
         $testimonials = Testimonial::whereStatus(1)->get();
 
@@ -36,6 +31,6 @@ class HomeController extends Controller
         $educationalStages = EducationalStage::with('classes')->get();
         $campusTours = CampusTour::all();
 
-        return view('website.home', compact('homeSlider', 'propertyTypes', 'testimonials', 'services', 'whyChooseUs', 'educationalStages', 'campusTours', 'teams'));
+        return view('website.home', compact('homeSlider', 'testimonials', 'whyChooseUs', 'educationalStages', 'campusTours', 'teams'));
     }
 }

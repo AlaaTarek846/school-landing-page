@@ -9,7 +9,6 @@ return [
     "areaManagement"=>"ادارة المناطق",
     "areas" => "المناطق",
     "cities" => "المدن",
-    "district" => "الاحياء",
     "services"=> "الخدمات",
     "departments" => "اقسام",
     "users" => "المستخدمين",

@@ -20,6 +20,7 @@ class ClassRoomResource extends JsonResource
             'title_en' => $this->title_en,
             'educational_stage_id' => $this->educational_stage_id,
             'educational_stage' => new EducationalStageResource($this->whenLoaded('educationalStage')),
+            'student_registrations_count' => $this->studentRegistrations()->count(),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
         ];
     }

@@ -20,6 +20,7 @@
                     <th scope="col">#</th>
                     <th scope="col">{{ $t('global.TitleAr') }}</th>
                     <th scope="col">{{ $t('global.TitleEn') }}</th>
+                    <th scope="col">{{ $t('global.CampusToursCount') }}</th>
                     <th scope="col">{{ $t('global.action') }}</th>
                   </tr>
                   </thead>
@@ -28,6 +29,7 @@
                     <td scope="row">{{index + 1}}</td>
                     <td>{{item.title_ar}}</td>
                     <td>{{item.title_en}}</td>
+                    <td>{{item.campus_tours_count}}</td>
                     <td>
                       <div class="hstack gap-2 fs-15">
                         <button

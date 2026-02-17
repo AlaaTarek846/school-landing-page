@@ -28,4 +28,9 @@ class ClassRoom extends Model
     {
         return $this->belongsTo(EducationalStage::class, 'educational_stage_id');
     }
+
+    public function studentRegistrations()
+    {
+        return $this->hasMany(StudentRegistration::class, 'class_id');
+    }
 }

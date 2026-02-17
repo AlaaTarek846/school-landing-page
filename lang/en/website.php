@@ -310,6 +310,9 @@ return [
 
     "school_profile_title" => "Leading School for Future Generations",
     "school_profile_desc" => "Empowering students with knowledge and skills for a bright future.",
+    'Cannot delete this stage because it has related student registrations' => 'Cannot delete this stage because it has related student registrations',
+    'Cannot delete this class because it has related student registrations' => 'Cannot delete this class because it has related student registrations',
+    'Cannot delete this category because it has related campus tours' => 'Cannot delete this category because it has related campus tours',
     "student_registration_title" => "Student Registration",
     "student_registration_desc" => "Register your child today to join our academic excellence.",
     "educational_stage" => "Educational Stage",

@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Models\Gallery;
+
 use App\Models\Setting;
 use App\Models\StoreProduct;
 use App\Policies\StoreProductPolicy;
@@ -41,11 +41,9 @@ class AppServiceProvider extends ServiceProvider
 
         if (!app()->runningInConsole()) {
             $setting = Setting::first();
-            $galleries = Gallery::whereStatus(1)->take(6)->get();
 
             View::share([
                 'setting' => $setting,
-                'galleries' => $galleries,
             ]);
         }
     }
