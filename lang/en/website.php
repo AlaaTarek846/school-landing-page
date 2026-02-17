@@ -347,4 +347,10 @@ return [
         "phone" => "Please enter a valid Egyptian phone number (e.g., 01xxxxxxxxx).",
         "numeric" => "Please enter a valid number.",
     ],
+    "portfolio" => "Portfolio",
+    "our_works" => "Our Works",
+    "portfolio_desc" => "Showcasing our students' achievements and school activities.",
+    "cta_title" => "Become a part of our school community today",
+    "cta_desc" => "Join us to provide the best education for your children.",
+    "get_started" => "Get Started",
 ];
