@@ -13,31 +13,31 @@
                 <div class="collapse navbar-collapse order-lg-2 justify-content-center" id="navbarCollapse">
                     <ul class="navbar-nav navbar-center">
                         <li class="nav-item">
-                            <a href="#home" class="nav-link">Home</a>
+                            <a href="#home" class="nav-link">{{ __('website.home') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#service" class="nav-link">Service</a>
+                            <a href="#service" class="nav-link">{{ __('website.why_choose_us') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#process" class="nav-link">Process</a>
+                            <a href="#process" class="nav-link">{{ __('website.Educational stages') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#testimonial" class="nav-link">Testimonial</a>
+                            <a href="#testimonial" class="nav-link">{{ __('website.Testimonials') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#portfolio" class="nav-link">Portfolio</a>
+                            <a href="#portfolio" class="nav-link">{{ __('website.our_works') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#contact" class="nav-link">Contact</a>
+                            <a href="#contact" class="nav-link">{{ __('website.contact') }}</a>
                         </li>
                     </ul>
                 </div>
                 <!--end navabar-collapse-->
                 <div class="header-btn ms-auto ms-lg-0 order-lg-3">
                     @if (App::isLocale('ar'))
-                        <a href="{{ route('change.language', 'en') }}" class="btn btn-sm btn-language">English</a>
+                        <a href="{{ route('change.language', 'en') }}" class="btn btn-sm btn-language">{{ __('website.English') }}</a>
                     @else
-                        <a href="{{ route('change.language', 'ar') }}" class="btn btn-sm btn-language">Arabic</a>
+                        <a href="{{ route('change.language', 'ar') }}" class="btn btn-sm btn-language">{{ __('website.Arabic') }}</a>
                     @endif
                 </div>
                 <!--end navabar-collapse-->

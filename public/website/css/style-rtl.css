@@ -1091,7 +1091,7 @@ html {
   position: absolute;
   top: 0;
   bottom: 0;
-  right: 10px;
+  left: 10px;
   align-items: center;
   display: flex;
 }

@@ -50,18 +50,33 @@
                         </div>
                       </div>
 
-                       <!-- Content Upload -->
-                       <!-- Content Upload -->
-                        <div class="col-md-12 mb-3">
-                           <div class="alert alert-info py-2">
-                               <small>
-                                   <i class="bi bi-info-circle me-1"></i>
-                                   {{ $t('global.AddOnlyOneItem') || 'Add only one item: Video, Image, or Link' }}
-                               </small>
-                           </div>
-                        </div>
+                      <!-- Type Selector -->
+                      <div class="col-md-12 mb-3">
+                          <label class="form-label">{{ $t('global.Type') }}</label>
+                          <div class="d-flex gap-3">
+                              <div class="form-check">
+                                  <input class="form-check-input" type="radio" name="type" id="typeImage" value="image" v-model="submitData.data.type">
+                                  <label class="form-check-label" for="typeImage">
+                                      {{ $t('global.Image') }}
+                                  </label>
+                              </div>
+                              <div class="form-check">
+                                  <input class="form-check-input" type="radio" name="type" id="typeVideo" value="video" v-model="submitData.data.type">
+                                  <label class="form-check-label" for="typeVideo">
+                                      {{ $t('global.Video') }}
+                                  </label>
+                              </div>
+                              <div class="form-check">
+                                  <input class="form-check-input" type="radio" name="type" id="typeLink" value="link" v-model="submitData.data.type">
+                                  <label class="form-check-label" for="typeLink">
+                                      {{ $t('global.Link') }}
+                                  </label>
+                              </div>
+                          </div>
+                      </div>
 
-                        <div class="col-md-12 mt-3">
+                        <!-- Image Upload -->
+                        <div class="col-md-12 mt-3" v-if="submitData.data.type === 'image'">
                           <label class="form-label">الصورة (اختياري) (800*640)</label>
                           <div class="row img-div-position">
                             <div class="col-12 text-end">
@@ -81,8 +96,7 @@
                                     </span>
 
                                 <input name="mediaPackageUpload" type="file" @change="preview"
-                                       id="photoPersonal1" accept="image/*"
-                                       :disabled="!!videoPreview || !!submitData.data.link">
+                                       id="photoPersonal1" accept="image/*">
 
                                 <div v-if="imageUpload" class="row justify-content-center h-100">
                                    <figure class="col-3">
@@ -95,22 +109,20 @@
                         </div>
 
                          <!-- Video Upload -->
-                        <div class="col-md-12 mt-3">
-                          <label class="form-label">فيديو (اختياري)</label>
-                          <input type="file" class="form-control" @change="handleVideoUpload" accept="video/mp4,video/x-m4v,video/*"
-                                 :disabled="!!imageUpload || !!submitData.data.link">
+                        <div class="col-md-12 mt-3" v-if="submitData.data.type === 'video'">
+                          <label class="form-label">فيديو (اجباري)</label>
+                          <input type="file" class="form-control" @change="handleVideoUpload" accept="video/mp4,video/x-m4v,video/*">
                            <div v-if="videoPreview" class="mt-2">
                                 <video width="320" height="240" controls :src="videoPreview"></video>
                                 <button type="button" class="btn btn-danger btn-sm d-block mt-1" @click="clearVideo">Remove Video</button>
                            </div>
                         </div>
 
-                        <!-- Link (if no image/video) -->
-                        <div class="col-md-12 mb-2 mt-2">
-                            <label class="form-label">الرابط (اختياري)</label>
+                        <!-- Link -->
+                        <div class="col-md-12 mb-2 mt-2" v-if="submitData.data.type === 'link'">
+                            <label class="form-label">الرابط (اجباري)</label>
                             <input type="text" class="form-control form-control-lg"  v-model="v$.link.$model"
-                                   :class="{'is-invalid': v$.link.$error}"
-                                   :disabled="!!imageUpload || !!videoPreview">
+                                   :class="{'is-invalid': v$.link.$error}">
                              <div class="invalid-feedback" v-if="v$.link.$error">
                                  {{ $t('validation.fieldRequired') }}
                             </div>
@@ -169,13 +181,8 @@
   const categories = ref([]);
 
   function getCategories() {
-      adminApi.get('campus-tour-categories') // Assuming a route exists to get all categories
+      adminApi.get('campus-tour-categories') 
         .then((res) => {
-            // Adjust based on actual API response structure for 'index' or a specific 'list' endpoint
-            // Usually pagination response wraps items in 'data' or 'data.data'
-            // If the index endpoint returns paginated data, we might need a ?limit=-1 or similar to get all, 
-            // OR use a specific 'list' endpoint if available. 
-            // For now assuming existing index endpoint returns paginated data in res.data.data
             categories.value = res.data.data; 
         })
         .catch((err) => {
@@ -192,6 +199,7 @@
     submitData.data.title_en = '';
     submitData.data.image = '';
     submitData.data.link = '';
+    submitData.data.type = 'image';
     submitData.data.campus_tour_category_id = '';
     
     is_disabled.value = false;
@@ -216,10 +224,11 @@
               submitData.data.title_ar = l.title_ar;
               submitData.data.title_en = l.title_en;
               submitData.data.link = l.link; 
+              submitData.data.type = l.type || 'image';
               submitData.data.campus_tour_category_id = l.campus_tour_category_id;
               imageUpload.value = l.image;
               if (l.video) {
-                  videoPreview.value = l.video; // Assuming API returns URL
+                  videoPreview.value = l.video; 
               } 
             })
             .catch((err) => {
@@ -243,6 +252,7 @@
       title_en: '',
       image: '',
       link: '',
+      type: 'image',
       campus_tour_category_id: ''
     }
   });
@@ -252,7 +262,7 @@
       title_ar: {required},
       title_en: {required},
       campus_tour_category_id: {required},
-      link: {} 
+      link: { required: requiredIf(() => submitData.data.type === 'link') } 
     }
   });
 
@@ -265,14 +275,19 @@
       let formData = new FormData();
       formData.append('title_ar', submitData.data.title_ar);
       formData.append('title_en', submitData.data.title_en);
-      formData.append('link', submitData.data.link ? submitData.data.link : '');
+      formData.append('type', submitData.data.type);
       formData.append('campus_tour_category_id', submitData.data.campus_tour_category_id);
       
-      if(submitData.data.image && typeof submitData.data.image !== 'string') {
-          formData.append('image', submitData.data.image);
-      }
-      if(videoFile.value) {
-          formData.append('video', videoFile.value);
+      if (submitData.data.type === 'link') {
+          formData.append('link', submitData.data.link ? submitData.data.link : '');
+      } else if (submitData.data.type === 'image') {
+          if(submitData.data.image && typeof submitData.data.image !== 'string') {
+              formData.append('image', submitData.data.image);
+          }
+      } else if (submitData.data.type === 'video') {
+           if(videoFile.value) {
+              formData.append('video', videoFile.value);
+          }
       }
 
       if (props.type !== 'edit') {

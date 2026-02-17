@@ -62,18 +62,42 @@ class CampusTourController extends Controller
 
         $data = $request->validated();
 
-        if ($request->hasFile('image')) {
-            if ($item->image) {
-                Storage::disk('public')->delete($item->image);
-            }
-            $data['image'] = $request->file('image')->store('campus_tours/images', 'public');
-        }
-        
-         if ($request->hasFile('video')) {
+        if ($request->type === 'image') {
             if ($item->video) {
                 Storage::disk('public')->delete($item->video);
+                $data['video'] = null;
             }
-            $data['video'] = $request->file('video')->store('campus_tours/videos', 'public');
+            $data['link'] = null;
+
+            if ($request->hasFile('image')) {
+                if ($item->image) {
+                    Storage::disk('public')->delete($item->image);
+                }
+                $data['image'] = $request->file('image')->store('campus_tours/images', 'public');
+            }
+        } elseif ($request->type === 'video') {
+            if ($item->image) {
+                Storage::disk('public')->delete($item->image);
+                $data['image'] = null;
+            }
+            $data['link'] = null;
+
+            if ($request->hasFile('video')) {
+                if ($item->video) {
+                    Storage::disk('public')->delete($item->video);
+                }
+                $data['video'] = $request->file('video')->store('campus_tours/videos', 'public');
+            }
+        } elseif ($request->type === 'link') {
+            if ($item->image) {
+                Storage::disk('public')->delete($item->image);
+                $data['image'] = null;
+            }
+            if ($item->video) {
+                Storage::disk('public')->delete($item->video);
+                $data['video'] = null;
+            }
+            // Link is already in $data from validated()
         }
 
         $item->update($data);

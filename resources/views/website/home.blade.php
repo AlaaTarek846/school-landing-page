@@ -374,7 +374,7 @@
                                 <li data-group="all" class="active nav-link list-inline-item mt-2">
                                     {{ __('website.All Categories') }}</li>
                                 @foreach($campusTourCategories as $category)
-                                <li data-group="{{ $category->id }}" class="nav-link list-inline-item mt-2">
+                                <li data-group="{{ $category->id }}" class="nav-link list-inline-item mt-2 mx-1">
                                     {{ $category->{'title_'.app()->getLocale()} }}</li>
                                 @endforeach
                             </ul>
@@ -389,17 +389,37 @@
                     @foreach($campusTours as $tour)
                     <div class="col-lg-3 col-md-6  picture-item" data-groups='["{{ $tour->campus_tour_category_id }}"]'>
                         <div class="portfolio-box rounded">
-                            <img class="img-fluid" src="{{ asset('storage/'.$tour->image) }}" onerror="this.src='{{ asset('website/images/portfolio/img-1.jpg') }}'" alt="work-img" />
+                            @if($tour->type == 'video')
+                                <video class="img-fluid w-100" style="height: 250px; object-fit: cover;" controls>
+                                    <source src="{{ asset($tour->video) }}" type="video/mp4">
+                                    {{ __('website.video_not_supported') }}
+                                </video>
+                            @elseif($tour->type == 'link')
+                                @php
+                                    $link = $tour->link;
+                                    if (str_contains($link, 'youtube.com/watch?v=')) {
+                                        $link = str_replace('youtube.com/watch?v=', 'youtube.com/embed/', $link);
+                                    } elseif (str_contains($link, 'youtu.be/')) {
+                                        $link = str_replace('youtu.be/', 'youtube.com/embed/', $link);
+                                    }
+                                @endphp
+                                <iframe class="img-fluid w-100" style="height: 250px;" src="{{ $link }}" frameborder="0" allowfullscreen></iframe>
+                            @else
+                                <img class="img-fluid w-100" style="height: 250px; object-fit: cover;" src="{{ asset($tour->image) }}" onerror="this.src='{{ asset('website/images/portfolio/img-1.jpg') }}'" alt="work-img" />
+                            @endif
+
                             <div class="portfolio-content">
+                                @if($tour->type == 'image')
                                 <div class="img-view">
-                                    <a href="{{ asset('storage/'.$tour->image) }}" class="text-muted image-popup"><i
-                                            class="mdi mdi-plus"></i></a>
+                                    <a href="{{ asset($tour->image) }}" class="text-muted image-popup">
+                                        <i class="mdi mdi-plus"></i>
+                                    </a>
                                 </div>
+                                @endif
                                 <div class="portfolio-caption">
                                     <a href="#" class="text-primary">
                                         <h5 class="mb-1 fs-18">{{ $tour->{'title_'.app()->getLocale()} }}</h5>
                                     </a>
-                                    <p class="mb-0">{{ $tour->category->{'title_'.app()->getLocale()} ?? '' }}</p>
                                 </div>
                             </div>
                         </div>
