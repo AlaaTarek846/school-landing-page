@@ -22,4 +22,8 @@ return [
     'save' => 'حفظ',
     'Facilities' => 'إمكانيات المدرسة',
     'FacilityDetails' => 'تفاصيل الإمكانيات',
+    'Image' => 'صورة',
+    'Video' => 'فيديو',
+    'Link' => 'رابط',
+    'Type' => 'النوع',
 ];

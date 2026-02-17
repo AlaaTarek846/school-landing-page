@@ -22,4 +22,8 @@ return [
     'save' => 'Save',
     'Facilities' => 'Facilities',
     'FacilityDetails' => 'Facility Details',
+    'Image' => 'Image',
+    'Video' => 'Video',
+    'Link' => 'Link',
+    'Type' => 'Type',
 ];
