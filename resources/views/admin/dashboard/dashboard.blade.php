@@ -25,7 +25,6 @@
 
 @push('scripts')
     @vite(['resources/js/app.js'])
-    <script src="{{ asset('assets/js/crm-dashboard.js') }}"></script>
 @endpush
 
 

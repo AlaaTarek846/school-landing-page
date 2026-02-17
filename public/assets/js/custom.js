@@ -397,8 +397,7 @@
     if (myHeaderCart) {
       new SimpleBar(myHeaderCart, { autoHide: false });
     }
-
-  }) ();
+  };
 
   /* full screen */
   var elem = document.documentElement;
@@ -496,4 +495,4 @@
       }
     });
   });
-/* for notifications dropdown */
+})();

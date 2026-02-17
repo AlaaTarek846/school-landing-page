@@ -1314,5 +1314,32 @@
         "auth_provider_x509_cert_url": "auth_provider_x509_cert_url",
         "client_x509_cert_url": "client_x509_cert_url",
         "universe_domain": "universe_domain"
+    },
+    "translation": {
+        "dashboard": {
+            "stats": {
+                "tours": "Campus Tours",
+                "stages": "Educational Stages",
+                "messages": "Messages",
+                "registrations": "Registrations"
+            },
+            "quick_actions": "Quick Actions",
+            "chart": {
+                "registrations_by_stage": "Registrations by Stage"
+            },
+            "recent": {
+                "registrations": "Recent Registrations",
+                "messages": "Recent Messages"
+            }
+        },
+        "campus-tours": "Campus Tours",
+        "teams": "Teams",
+        "settings": "Settings"
+    },
+    "website": {
+        "student_name": "Student Name",
+        "educational_stage": "Educational Stage",
+        "Name": "Name",
+        "Your Subject": "Subject"
     }
 }
