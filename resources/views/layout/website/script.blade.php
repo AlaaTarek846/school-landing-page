@@ -6,7 +6,10 @@
 <script src="{{ asset('website/js/glightbox.min.js')}}"></script>
 
 <!-- Shuffle Js -->
-<script src="   {{ asset('website/js/shuffle.min.js')}}"></script>
+<script src="{{ asset('website/js/shuffle.min.js') }}"></script>
+
+<!-- Gallery Init Js -->
+<script src="{{ asset('website/js/gallery.init.js') }}"></script>
 
 
 
