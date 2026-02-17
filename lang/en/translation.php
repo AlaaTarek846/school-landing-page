@@ -13,6 +13,22 @@ return [
     "departments" => "Departments",
     "users" => "Users",
     "back" => "Back",
+    "dashboard" => [
+        "stats" => [
+            "registrations" => "Registrations",
+            "messages" => "Messages",
+            "stages" => "Educational Stages",
+            "tours" => "Campus Tours",
+        ],
+        "recent" => [
+            "registrations" => "Recent Registrations",
+            "messages" => "Recent Messages",
+        ],
+        "chart" => [
+            "registrations_by_stage" => "Registrations by Stage",
+        ],
+        "quick_actions" => "Quick Actions",
+    ],
     "properties" => "Properties",
     "showProperty" => "Show property",
     "owner" => "Owners",

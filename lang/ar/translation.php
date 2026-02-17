@@ -55,4 +55,20 @@ return [
         'Commercial' => 'تجارية',
         'Residential' => 'سكنية',
     ],
+    'dashboard' => [
+        'stats' => [
+            'registrations' => 'طلبات التسجيل',
+            'messages' => 'الرسائل الواردة',
+            'stages' => 'المراحل الدراسية',
+            'tours' => 'الجولة المدرسية',
+        ],
+        'recent' => [
+            'registrations' => 'أحدث طلبات التسجيل',
+            'messages' => 'أحدث الرسائل',
+        ],
+        'chart' => [
+            'registrations_by_stage' => 'توزيع الطلاب حسب المراحل',
+        ],
+        'quick_actions' => 'الوصول السريع',
+    ],
 ];

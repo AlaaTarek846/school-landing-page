@@ -67,6 +67,8 @@ Route::prefix('api')->group(function () {
         Route::get('facilities-dropdown', [\App\Http\Controllers\Admin\FacilityDetailController::class, 'getFacilities']);
         Route::apiResource('facility-details', \App\Http\Controllers\Admin\FacilityDetailController::class);
 
+        Route::get('dashboard-stats', [DashboardController::class, 'getStats']);
+
     });
 
 });

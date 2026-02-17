@@ -1355,5 +1355,32 @@
         "auth_provider_x509_cert_url": "auth_provider_x509_cert_url",
         "client_x509_cert_url": "client_x509_cert_url",
         "universe_domain": "universe_domain"
+    },
+    "translation": {
+        "dashboard": {
+            "stats": {
+                "tours": "الجولة المدرسية",
+                "stages": "المراحل الدراسية",
+                "messages": "الرسائل الواردة",
+                "registrations": "طلبات التسجيل"
+            },
+            "quick_actions": "الوصول السريع",
+            "chart": {
+                "registrations_by_stage": "توزيع الطلاب حسب المراحل"
+            },
+            "recent": {
+                "registrations": "أحدث طلبات التسجيل",
+                "messages": "أحدث الرسائل"
+            }
+        },
+        "campus-tours": "جولة بالمدرسة",
+        "teams": "اعضاء الشركة",
+        "settings": "الإعدادات"
+    },
+    "website": {
+        "student_name": "اسم الطالب",
+        "educational_stage": "المرحلة الدراسية",
+        "Name": "الاسم",
+        "Your Subject": "الموضوع"
     }
 }

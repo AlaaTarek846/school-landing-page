@@ -141,7 +141,7 @@
                     <div class="col-lg-6">
                         <div class="skill-box bg-white p-4 rounded box-shadow">
                             <h3 class="mb-2">{{ $oneAbout->title ?? '' }}</h3>
-                            <p class="text-muted">{{ $oneAbout->description ?? '' }}</p>
+                            <p class="text-muted">{!!  $oneAbout->description ?? ''!!}</p>
                         </div>
                     </div>
                     <!--end col-->
