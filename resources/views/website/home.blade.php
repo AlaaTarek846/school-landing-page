@@ -386,6 +386,7 @@
 
             <div class="container-fluid mt-5">
                 <div class="row g-2" id="grid">
+                    <div class="col-1 my-sizer-element"></div>
                     @foreach($campusTours as $tour)
                     <div class="col-lg-3 col-md-6  picture-item" data-groups='["{{ $tour->campus_tour_category_id }}"]'>
                         <div class="portfolio-box rounded">
