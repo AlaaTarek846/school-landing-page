@@ -4,7 +4,7 @@
 
     <head>
         <meta charset="utf-8" />
-        <title>zoric | Responsive Bootstrap 5 Landing Page Template | Codebucks</title>
+        <title>novara language school</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Premium Bootstrap v5.3.3 Landing Page Template" />
         <meta name="keywords" content="Bootstrap v5.3.3, premium, marketing, multipurpose" />

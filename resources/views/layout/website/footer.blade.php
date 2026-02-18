@@ -4,7 +4,8 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="mt-4">
-                            <a href="{{ route('home') }}"><img src="{{ asset('website/images/logo-light.png') }}" onerror="this.src='{{ asset('website/images/feature/img-02.png') }}'" alt="" height="22"></a>
+                            <a href="{{ route('home') }}">
+                                <img src="{{ asset('website/images/dark blue.png') }}" onerror="this.src='{{ asset('website/images/feature/img-02.png') }}'" alt="" height="80"></a>
                             <p class="text-white-50 mt-3 pt-2 mb-0 ">{{ __('website.school_footer_desc') }}</p>
                             <div class="mt-4">
                                 <ul class="list-inline footer-social">
