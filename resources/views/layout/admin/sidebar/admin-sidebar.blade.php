@@ -16,7 +16,7 @@
         <a href="{{ route('admin.page.home-sliders') }}"
            class="side-menu__item {{ request()->routeIs('admin.page.home-sliders') ? 'active' : '' }}">
             <i class="bi bi-map side-menu__icon"></i>
-            <span class="side-menu__label">السكشن المتحرك</span>
+            <span class="side-menu__label">السكشن لاول</span>
         </a>
     </li>
 

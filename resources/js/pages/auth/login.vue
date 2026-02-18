@@ -3,8 +3,8 @@
     <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 col-12">
       <div class="my-5 d-flex justify-content-center">
         <a href="/">
-          <img src="/website/img/logos/logo1.png" alt="logo" class="desktop-logo" style="width:150px;height:150px">
-          <img src="/website/img/logos/logo1.png" alt="logo" class="desktop-dark" style="width:150px;height:150px">
+          <img src="/website/images/dark-blue.png" alt="logo" class="desktop-logo" style="width:150px;height:150px">
+          <img src="/website/images/dark-blue.png" alt="logo" class="desktop-dark" style="width:150px;height:150px">
         </a>
       </div>
       <div class="card custom-card">

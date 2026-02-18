@@ -50,7 +50,7 @@
                     <th scope="col">{{ $t('global.StudentName') }}</th>
                     <th scope="col">{{ $t('global.EducationalStage') }}</th>
                     <th scope="col">{{ $t('global.ClassRoom') }}</th>
-                    <th scope="col">{{ $t('global.File') }}</th>
+<!--                    <th scope="col">{{ $t('global.File') }}</th>-->
                     <th scope="col">{{ $t('global.date') }}</th>
                     <th scope="col">{{ $t('global.action') }}</th>
                   </tr>
@@ -61,10 +61,10 @@
                     <td>{{item.student_name}}</td>
                     <td>{{item.educational_stage?.title_ar}}</td>
                     <td>{{item.class_room?.title_ar}}</td>
-                    <td>
-                        <a v-if="item.pdf" :href="item.pdf" target="_blank" class="text-primary">Download PDF</a>
-                        <span v-else>-</span>
-                    </td>
+<!--                    <td>-->
+<!--                        <a v-if="item.pdf" :href="item.pdf" target="_blank" class="text-primary">Download PDF</a>-->
+<!--                        <span v-else>-</span>-->
+<!--                    </td>-->
                     <td>{{ item.created_at }}</td>
                     <td>
                       <div class="hstack gap-2 fs-15">

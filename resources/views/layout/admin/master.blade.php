@@ -9,7 +9,7 @@
         <title>@yield('title')</title>
 
         <!-- Favicon -->
-        <link rel="icon" href="{{asset('website/img/logo.jpeg')}}" type="image/x-icon">
+        <link rel="icon" href="{{asset('website/images/dark-blue.png')}}" type="image/x-icon">
 
         <!-- Choices JS -->
         <script src="{{asset('assets/libs/choices.js/public/assets/scripts/choices.min.js')}}"></script>
