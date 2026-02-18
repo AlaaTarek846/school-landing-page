@@ -3,8 +3,8 @@
             <div class="container">
                 <!-- LOGO -->
                 <a class="navbar-brand logo text-uppercase" href="index-5.html">
-                    <img src="images/logo-dark.png" class="logo-light" alt="logo-light" height="22">
-                    <img src="images/logo-dark.png" class="logo-dark" alt="logo-dark" height="22">
+                    <img src="/website/images/dark blue.png" class="logo-light" alt="logo-light" height="80">
+                    <img src="/website/images/dark blue.png" class="logo-dark" alt="logo-dark" height="80">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
