@@ -50,27 +50,6 @@
                         </div>
                       </div>
 
-                      <!-- Description AR -->
-                      <div class="col-md-6 mb-2">
-                        <label class="form-label">الوصف (عربي)</label>
-                        <textarea class="form-control form-control-lg" v-model="v$.description_ar.$model"
-                                  :class="{'is-invalid': v$.description_ar.$error || errors[`description_ar`],
-                                        'is-valid': !v$[`description_ar`].$invalid && !errors[`description_ar`]}"></textarea>
-                        <div class="invalid-feedback" v-if="v$.description_ar.$error">
-                             {{ $t('validation.fieldRequired') }}
-                        </div>
-                      </div>
-
-                      <!-- Description EN -->
-                      <div class="col-md-6 mb-2">
-                        <label class="form-label">الوصف (English)</label>
-                        <textarea class="form-control form-control-lg" v-model="v$.description_en.$model"
-                                  :class="{'is-invalid': v$.description_en.$error || errors[`description_en`],
-                                        'is-valid': !v$[`description_en`].$invalid && !errors[`description_en`]}"></textarea>
-                         <div class="invalid-feedback" v-if="v$.description_en.$error">
-                             {{ $t('validation.fieldRequired') }}
-                        </div>
-                      </div>
 
                       <!-- Type Selector -->
                       <div class="col-md-12 mb-3">
@@ -228,8 +207,6 @@
   function defaultData(){
     submitData.data.title_ar = '';
     submitData.data.title_en = '';
-    submitData.data.description_ar = ''; // Added
-    submitData.data.description_en = ''; // Added
     submitData.data.image = '';
     submitData.data.link = '';
     submitData.data.type = 'image';
@@ -258,8 +235,6 @@
               let l = res.data.data;
               submitData.data.title_ar = l.title_ar;
               submitData.data.title_en = l.title_en;
-              submitData.data.description_ar = l.description_ar; // Added
-              submitData.data.description_en = l.description_en; // Added
               submitData.data.link = l.link; 
               submitData.data.type = l.type || 'image';
               submitData.data.campus_tour_category_id = l.campus_tour_category_id;
@@ -287,8 +262,6 @@
     data:{
       title_ar: '',
       title_en: '',
-      description_ar: '', // Added
-      description_en: '', // Added
       image: '',
       link: '',
       video: '', 
@@ -301,8 +274,6 @@
     return {
       title_ar: {required},
       title_en: {required},
-      description_ar: {required}, // Added
-      description_en: {required}, // Added
       campus_tour_category_id: {required},
       link: { required: requiredIf(() => submitData.data.type === 'link') },
       image: { required: requiredIf(() => {
@@ -324,8 +295,6 @@
       let formData = new FormData();
       formData.append('title_ar', submitData.data.title_ar);
       formData.append('title_en', submitData.data.title_en);
-      formData.append('description_ar', submitData.data.description_ar); // Added
-      formData.append('description_en', submitData.data.description_en); // Added
       formData.append('type', submitData.data.type);
       formData.append('campus_tour_category_id', submitData.data.campus_tour_category_id);
       

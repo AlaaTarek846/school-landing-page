@@ -64,7 +64,7 @@
               <Column field="student_name" :header="$t('website.student_name')"></Column>
               <Column :header="$t('website.educational_stage')">
                 <template #body="slotProps">
-                  {{ slotProps.data.educational_stage?.title }}
+                  {{ slotProps.data.educational_stage?.name }}
                 </template>
               </Column>
               <Column field="created_at" :header="$t('global.created_at')">

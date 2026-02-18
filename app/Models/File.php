@@ -28,4 +28,10 @@ class File extends Model
         return $this->morphTo();
     }
 
+    public function getFullUrlAttribute()
+    {
+        if (!$this->url) return null;
+        return str_contains($this->url, 'storage') ? $this->url : \Illuminate\Support\Facades\Storage::url($this->url);
+    }
+
 }

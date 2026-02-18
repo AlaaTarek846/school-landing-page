@@ -26,10 +26,10 @@ class OneAboutRequest extends FormRequest
             "title_en" => "required|string|max:200",
             "title_color_en" => "nullable|string|max:200",
             "title_color_ar" => "nullable|string|max:200",
-            "description_ar" => "required|string|max:300",
-            "description_en" => "required|string|max:200",
+            "description_ar" => "required|string",
+            "description_en" => "required|string",
             "details"        => "nullable",
-            "details.*.title_ar" => "nullable|string|max:200",
+            "details.*.title_ar" => "nullable|string",
             "details.*.title_en" => "nullable|string|max:200",
             'first_photo' => [$this->method() == "PUT" ? 'nullable':'required','image','mimes:jpeg,png,jpg,gif','max:2048'],
         ];
