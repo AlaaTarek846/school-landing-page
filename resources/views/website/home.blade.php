@@ -114,7 +114,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="service-box text-center mt-4 box-shadow">
                             <img
-                                src="{{ $item->image }}"
+                                src="{{ $item->image ? (str_contains($item->image, 'storage') ? $item->image : \Illuminate\Support\Facades\Storage::url($item->image)) : null }}"
                                 onerror="src='{{ asset('website/images/feature/img-02.png') }}'"
                                 alt=""
                                 class="img-fluid"
@@ -146,7 +146,7 @@
                     </div>
                     <!--end col-->
                     <div class="col-lg-6 about-img">
-                        <img src="{{ isset($oneAbout) && $oneAbout->first_photo ? $oneAbout->first_photo->url : asset('website/images/about.jpg') }}" class="img-fluid rounded box-shadow" alt="">
+                        <img src="{{ isset($oneAbout) && $oneAbout->firstPhoto ? $oneAbout->firstPhoto->full_url : asset('website/images/about.jpg') }}" class="img-fluid rounded box-shadow" alt="">
                     </div>
                     <!--end col-->
                 </div>
@@ -227,7 +227,7 @@
 
                     <div class="col-lg-6">
                         <div class="img">
-                            <img src="{{ isset($facility) && $facility->image ? $facility->image : asset('website/images/achivements.jpg')}}" class="img-fluid box-shadow-lg rounded" alt="">
+                            <img src="{{ $facility->image ? (str_contains($facility->image, 'storage') ? $facility->image : \Illuminate\Support\Facades\Storage::url($facility->image)) : asset('website/images/achivements.jpg') }}" class="img-fluid box-shadow-lg rounded" alt="">
                         </div>
                     </div>
                 </div>
@@ -261,7 +261,7 @@
                                 @foreach($testimonials as $index => $testimonial)
                                 <button type="button" data-bs-target="#testimonialSlider" data-bs-slide-to="{{ $index }}"
                                     class="active" aria-current="true" aria-label="Slide 1"><img
-                                        src="{{ $testimonial->media?->url }}"
+                                        src="{{ $testimonial->media?->full_url }}"
                                         onerror="src='{{asset("website/images/users/img-5.jpg")}}'" alt=""
                                         class="testi-img  img-fluid rounded mx-auto d-block"></button>
                                 @endforeach
@@ -324,7 +324,7 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="team-box text-center">
                             <div class="team-img position-relative">
-                                <img src="{{ $team->media?->url }}" onerror="src='{{asset("website/images/users/img-2.jpg")}}'" class="img-fluid rounded" alt="">
+                                <img src="{{ $team->media?->full_url }}" onerror="src='{{asset("website/images/users/img-2.jpg")}}'" class="img-fluid rounded" alt="">
                                 <div class="team-content">
 {{--                                    <ul class="list-inline mb-0 p-0">--}}
 {{--                                        <li class="list-inline-item"><a href="#"><i class="mdi mdi-facebook"></i></a></li>--}}
@@ -335,9 +335,9 @@
                             </div>
                             <div class="p-3">
                                 <a href="#" class="text-primary">
-                                    <h5 class="fs-18 mb-1">{{ $testimonial->name }}</h5>
+                                    <h5 class="fs-18 mb-1">{{ $team->{'name_'.app()->getLocale()} }}</h5>
                                 </a>
-                                <p class="mb-0">{{ $testimonial->job }}</p>
+                                <p class="mb-0">{{ $team->{'job_'.app()->getLocale()} }}</p>
                         </div>
                     </div>
                         <!--end team-box-->
@@ -391,7 +391,7 @@
                         <div class="portfolio-box rounded">
                             @if($tour->type == 'video')
                                 <video class="img-fluid w-100" style="height: 250px; object-fit: cover;" controls>
-                                    <source src="{{ asset($tour->video) }}" type="video/mp4">
+                                    <source src="{{ $tour->video ? (str_contains($tour->video, 'storage') ? $tour->video : \Illuminate\Support\Facades\Storage::url($tour->video)) : '' }}" type="video/mp4">
                                     {{ __('website.video_not_supported') }}
                                 </video>
                             @elseif($tour->type == 'link')
@@ -405,13 +405,13 @@
                                 @endphp
                                 <iframe class="img-fluid w-100" style="height: 250px;" src="{{ $link }}" frameborder="0" allowfullscreen></iframe>
                             @else
-                                <img class="img-fluid w-100" style="height: 250px; object-fit: cover;" src="{{ asset($tour->image) }}" onerror="this.src='{{ asset('website/images/portfolio/img-1.jpg') }}'" alt="work-img" />
+                                <img class="img-fluid w-100" style="height: 250px; object-fit: cover;" src="{{ $tour->image ? (str_contains($tour->image, 'storage') ? $tour->image : \Illuminate\Support\Facades\Storage::url($tour->image)) : asset('website/images/portfolio/img-1.jpg') }}" onerror="this.src='{{ asset('website/images/portfolio/img-1.jpg') }}'" alt="work-img" />
                             @endif
 
                             <div class="portfolio-content">
                                 @if($tour->type == 'image')
                                 <div class="img-view">
-                                    <a href="{{ asset($tour->image) }}" class="text-muted image-popup">
+                                    <a href="{{ $tour->image ? (str_contains($tour->image, 'storage') ? $tour->image : \Illuminate\Support\Facades\Storage::url($tour->image)) : asset('website/images/portfolio/img-1.jpg') }}" class="text-muted image-popup">
                                         <i class="mdi mdi-plus"></i>
                                     </a>
                                 </div>

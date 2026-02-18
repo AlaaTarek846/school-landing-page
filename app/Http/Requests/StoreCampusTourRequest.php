@@ -24,8 +24,6 @@ class StoreCampusTourRequest extends FormRequest
         return [
             'title_ar' => 'required|string|max:255',
             'title_en' => 'required|string|max:255',
-            'description_ar' => 'required|string',
-            'description_en' => 'required|string',
             'type' => 'required|in:image,video,link',
             'image' => 'required_if:type,image|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'video' => 'required_if:type,video',

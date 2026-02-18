@@ -19,7 +19,7 @@ class CampusTourResource extends JsonResource
         $content = $this->link;
         
         if ($type === 'image') {
-            $content = $this->image ? $this->image : null;
+            $content = $this->image ? (str_contains($this->image, 'storage') ? $this->image : \Illuminate\Support\Facades\Storage::url($this->image)) : null;
         } elseif ($type === 'video') {
              $content = $this->video ? $this->video : null;
         }
@@ -28,9 +28,7 @@ class CampusTourResource extends JsonResource
             'id' => $this->id,
             'title_ar' => $this->title_ar,
             'title_en' => $this->title_en,
-            'description_ar' => $this->description_ar,
-            'description_en' => $this->description_en,
-            'type' => $this->type, // Changed from $type to $this->type based on edit
+            'type' => $this->type,
             'content' => $content,
             'image' => $this->image ? $this->image : null,
             'video' => $this->video ? $this->video : null,

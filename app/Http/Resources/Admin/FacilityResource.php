@@ -20,7 +20,7 @@ class FacilityResource extends JsonResource
             'title_en' => $this->title_en,
             'description_ar' => $this->description_ar,
             'description_en' => $this->description_en,
-            'image' => $this->image ? asset('storage/' . $this->image) : null,
+            'image' => $this->image ? (str_contains($this->image, 'storage') ? $this->image : \Illuminate\Support\Facades\Storage::url($this->image)) : null,
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'details' => \App\Http\Resources\Admin\FacilityDetailResource::collection($this->whenLoaded('details')),
         ];

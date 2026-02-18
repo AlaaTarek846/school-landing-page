@@ -38,6 +38,7 @@ class HomeController extends Controller
 
 
         $oneAbout = OneAbout::with('firstPhoto')->first();
+
         $facility = Facility::with('details')->first();
         return view('website.home', compact('homeSlider', 'testimonials', 'whyChooseUs', 'educationalStages', 'campusTours', 'teams','oneAbout', 'facility','campusTourCategories'));
 
