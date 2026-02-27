@@ -13,7 +13,7 @@ class Testimonial extends Model
 
     protected $fillable = ['name_ar', 'name_en', 'job_ar', 'job_en', 'description_ar', 'description_en', 'status'];
 
-    protected $table = 'Testimonials';
+    protected $table = 'testimonials';
 
     public function media()
     {

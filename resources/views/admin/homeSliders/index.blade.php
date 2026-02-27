@@ -1,6 +1,6 @@
 @extends('layout.admin.master')
 
-@section('title', 'السكشن المتحرك')
+@section('title', 'السكشن لاول')
 
 {{--@section('css')--}}
 
@@ -10,7 +10,7 @@
         <div class="container-fluid">
 
             <!-- Page Header -->
-            @include('layout.admin.partials.breadcrumb',['page' => 'السكشن المتحرك'])
+            @include('layout.admin.partials.breadcrumb',['page' => 'السكشن لاول'])
             <!-- Page Header Close -->
 
             <!-- Start::row-1 -->

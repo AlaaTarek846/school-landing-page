@@ -826,7 +826,7 @@ html {
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: cover;
-  opacity: 0.3;
+  opacity: 1;
 }
 
 .subscribe-form {

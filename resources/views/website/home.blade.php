@@ -14,7 +14,7 @@
                             <div class="me-4">
                                 <h6 class="sub-title mb-3">{{ __('website.school_profile_title') }}</h6>
                                 <h1 class="mb-4">{{ $homeSlider->title ?? '' }}</h1>
-                                <p class="text-muted fs-17">{{ $homeSlider->description ?? '' }}</p>
+                                <p class="text-muted fs-17 fw-bold">{{ $homeSlider->description ?? '' }}</p>
                                 <div class="mt-4">
                                     <a href="#contact" class="btn btn-primary mt-2">{{ __('website.contact') }}</a>
                                 </div>
@@ -23,7 +23,7 @@
                         <div class="col-lg-5 ms-auto">
                             <div class="subscribe-form box-shadow mt-4 mt-lg-0">
                                 <div class="text-center mb-4 pb-2">
-                                    <p class="text-muted text-uppercase mb-2">{{ __('website.school_profile_title') }}</p>
+                                    <p class="text-muted text-uppercase mb-2 fw-bold">{{ __('website.school_profile_title') }}</p>
                                     <h5>{{ __('website.student_registration_title') }}</h5>
                                 </div>
                                 <form id="studentRegistrationForm">
@@ -101,7 +101,7 @@
                     <div class="col-lg-6">
                         <div class="text-center mb-5">
                             <h4 class="heading">{{ __('website.why_choose_us') }}</h4>
-                            <p class="text-muted fs-17">{{ __('website.school_profile_desc') }}</p>
+                            <p class="text-muted fs-17 fw-bold">{{ __('website.school_profile_desc') }}</p>
                         </div>
                     </div>
                     <!--end col-->
@@ -121,7 +121,7 @@
                             >
                             <h5 class="fs-18 mt-4">{{ $item->title }}</h5>
                             <div class="lighlight-border mt-3"></div>
-                            <p class="text-muted mt-3 mb-0">{{ $item->description }}</p>
+                            <p class="text-muted mt-3 mb-0 fw-bold">{{ $item->description }}</p>
                         </div>
                     </div>
                     <!--end col-->
@@ -177,7 +177,7 @@
 
                             <div class="process-content bg-light mt-5 rounded p-4">
                                 <h5 class="fs-18">{{ $educationalStage->title }}</h5>
-                                <p class="text-muted mb-0">{{ $educationalStage->description }}</p>
+                                <p class="text-muted mb-0 fw-bold">{{ $educationalStage->description }}</p>
                             </div>
                         </div>
                         <!--end process-box-->
@@ -197,7 +197,7 @@
                 <div class="row">
                     <div class="col-lg-6">
                             <h4>{{ $facility->{'title_'.app()->getLocale()} ?? '' }}</h4>
-                            <p class="text-muted mt-2">{{ $facility->{'description_'.app()->getLocale()} ?? '' }}</p>
+                            <p class="text-muted mt-2 fw-bold">{{ $facility->{'description_'.app()->getLocale()} ?? '' }}</p>
 
                             <div class="mt-4 mb-5">
                                 <div class="row" id="counter">
@@ -210,8 +210,8 @@
                                                         <i class="mdi mdi-layers"></i>
                                                     </div>
                                                     <div class="flex-grow-1 mx-3">
-                                                    <h4 class="counter_value" data-target="{{ $detail->count }}">{{ $detail->count }}</h4>
-                                                    <p class="text-muted">{{ $detail->title }}</p>
+                                                    <h5  >{{ $detail->title }}</h5>
+{{--                                                    <p class="text-muted">{{ $detail->title }}</p>--}}
                                                     </div>
                                                 </div>
                                             </div>
@@ -243,7 +243,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-7">
                         <div class="header-title text-center">
-                            <p class="text-uppercase text-muted mb-2">{{ __('website.Testimonials') }}</p>
+                            <p class="text-uppercase text-muted mb-2 fw-bold">{{ __('website.Testimonials') }}</p>
                             <h3>{{ __('website.What Customers Said About Our Lumin') }}</h3>
                             <div class="title-border mt-3"></div>
                             <p class="title-desc text-muted mt-3"> </p>
@@ -272,11 +272,11 @@
                                 <div class="carousel-item {{ !$index ? 'active' : ''}}">
                                     <div class="testimonial-box text-center mt-4">
                                         <div class="testimonial-content rounded">
-                                            <p class="text-muted mb-0">{{ $testimonial->description }}</p>
+                                            <p class="text-muted mb-0 fw-bold">{{ $testimonial->description }}</p>
                                         </div>
                                         <i class="mdi mdi-format-quote-close text-primary display-3"></i>
                                         <h5 class="fs-18">{{ $testimonial->name }}</h5>
-                                        <p class="text-muted mb-0">{{ $testimonial->job }}</p>
+                                        <p class="text-muted mb-0 fw-bold">{{ $testimonial->job }}</p>
                                     </div>
                                 </div><!--end carousal-item-->
                                 @endforeach
@@ -310,7 +310,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-7">
                         <div class="header-title text-center">
-                            <p class="text-uppercase text-muted mb-2">{{ __('website.TEAM MEMBERS') }}</p>
+                            <p class="text-uppercase text-muted mb-2 fw-bold">{{ __('website.TEAM MEMBERS') }}</p>
                             <h3>{{ __('website.Profesional People') }}</h3>
                             <div class="title-border mt-3"></div>
                             <p class="title-desc text-muted mt-3"> </p>
@@ -358,10 +358,10 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-7">
                         <div class="header-title text-center">
-                            <p class="text-uppercase text-muted mb-2">{{ __('website.portfolio') }}</p>
+                            <p class="text-uppercase text-muted mb-2 fw-bold">{{ __('website.portfolio') }}</p>
                             <h3>{{ __('website.our_works') }}</h3>
                             <div class="title-border mt-3"></div>
-                            <p class="title-desc text-muted mt-3">{{ __('website.portfolio_desc') }}</p>
+                            <p class="title-desc text-muted mt-3 fw-bold">{{ __('website.portfolio_desc') }}</p>
                         </div>
                     </div>
                     <!--end col-->
@@ -441,7 +441,7 @@
                     <div class="col-lg-10">
                         <div class="header-title text-center">
                             <h2>{{ __('website.cta_title') }}</h2>
-                            <p class="title-desc text-muted mt-3"> {{ __('website.cta_desc') }} </p>
+                            <p class="title-desc text-muted mt-3 fw-bold"> {{ __('website.cta_desc') }} </p>
                             <div class="mt-4">
                                 <a href="#" class="btn btn-primary mt-2">{{ __('website.get_started') }}</a>
                             </div>
@@ -462,7 +462,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-7">
                         <div class="text-center mb-4">
-                            <p class="text-uppercase text-muted mb-2">{{ __('website.contact') }}</p>
+                            <p class="text-uppercase text-muted mb-2 fw-bold">{{ __('website.contact') }}</p>
                             <h3 class="text-uppercase">{{ __('website.Contact With Us') }}</h3>
                             <div class="title-border mt-3"></div>
                             <p class="title-desc text-muted mt-3"> </p>
@@ -480,7 +480,7 @@
                             </div>
                             <div class="mt-4 pt-2">
                                 <h6 class="fs-17">{{ __('website.Address') }}</h6>
-                                <p class="text-muted mb-0">{!! $setting->address !!}</p>
+                                <p class="text-muted mb-0 fw-bold">{!! $setting->address !!}</p>
                             </div>
                         </div>
                     </div><!--end col-->
@@ -492,7 +492,7 @@
                             </div>
                             <div class="mt-4 pt-2">
                                 <h6 class="fs-17">{{ __('website.phone') }}</h6>
-                                <p class="text-muted mb-0">{{ $setting->mobile }}</p>
+                                <p class="text-muted mb-0 fw-bold">{{ $setting->mobile }}</p>
                             </div>
                         </div>
                     </div><!--end col-->
@@ -504,7 +504,7 @@
                             </div>
                             <div class="mt-4 pt-2">
                                 <h6 class="fs-17">{{ __('website.Email') }}</h6>
-                                <p class="text-muted mb-0">{{ $setting->email }}</p>                           
+                                <p class="text-muted mb-0 fw-bold">{{ $setting->email }}</p>
                             </div>
                         </div>
                     </div><!--end col-->
@@ -516,8 +516,8 @@
                             </div>
                             <div class="mt-4 pt-2">
                                 <h6 class="fs-17">{{ __('website.working_hours') }}</h6>
-                                <p class="text-muted mb-0">{{ __('website.working_days') }}</p>
-                                <p class="text-muted mb-0">{{ __('website.holiday') }}</p>
+                                <p class="text-muted mb-0 fw-bold">{{ __('website.working_days') }}</p>
+                                <p class="text-muted mb-0 fw-bold">{{ __('website.holiday') }}</p>
                                 
                             </div>
                         </div>

@@ -108,18 +108,18 @@
 <!--                                            <i class="ri-delete-bin-line"></i>-->
 <!--                                        </button>-->
 <!--                                    </div>-->
-                                    <div class="col-md-4 mb-2">
+                                    <div class="col-md-6 mb-4">
                                         <label class="form-label">{{ $t('global.TitleAr') }}</label>
                                         <input type="text" class="form-control" v-model="detail.title_ar">
                                     </div>
-                                    <div class="col-md-4 mb-2">
+                                    <div class="col-md-6 mb-4">
                                         <label class="form-label">{{ $t('global.TitleEn') }}</label>
                                         <input type="text" class="form-control" v-model="detail.title_en">
                                     </div>
-                                    <div class="col-md-4 mb-2">
-                                        <label class="form-label">{{ $t('global.count') }}</label>
-                                        <input type="number" class="form-control" v-model="detail.count" min="0">
-                                    </div>
+<!--                                    <div class="col-md-4 mb-2">-->
+<!--                                        <label class="form-label">{{ $t('global.count') }}</label>-->
+<!--                                        <input type="number" class="form-control" v-model="detail.count" min="0">-->
+<!--                                    </div>-->
                                 </div>
                             </div>
                         </div>
